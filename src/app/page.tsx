@@ -1,65 +1,149 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useRef } from 'react';
+import dynamic from 'next/dynamic';
+import {
+  useQueryStates,
+  parseAsString,
+  parseAsBoolean,
+  parseAsInteger,
+  parseAsStringLiteral,
+} from 'nuqs';
+import AuracastForm from '@/components/AuracastForm';
+import CentreImagePicker, { CentreImageType } from '@/components/CentreImagePicker';
+import AdvancedStylingAccordion from '@/components/AdvancedStylingAccordion';
+import { StylingOptions, DEFAULT_STYLING } from '@/lib/styling';
+import type { DotType, CornerSquareType, ErrorCorrectionLevel } from 'qr-code-styling';
+
+const QRPreview = dynamic(() => import('@/components/QRPreview'), { ssr: false });
+const DownloadButton = dynamic(() => import('@/components/DownloadButton'), { ssr: false });
+
+const LOGO_URL = '/auracast-logo.svg';
+
+const FORM_PARSERS = {
+  BN: parseAsString.withDefault(''),
+  BI: parseAsString.withDefault(''),
+  AD: parseAsString.withDefault(''),
+  AT: parseAsStringLiteral(['0', '1'] as const).withDefault('0'),
+  quality: parseAsStringLiteral(['none', 'sq', 'hq', 'both'] as const).withDefault('none'),
+  encrypted: parseAsBoolean.withDefault(false),
+  BC: parseAsString.withDefault(''),
+};
+
+const STYLING_PARSERS = {
+  fg: parseAsString.withDefault(DEFAULT_STYLING.fgColor),
+  bg: parseAsString.withDefault(DEFAULT_STYLING.bgColor),
+  dot: parseAsString.withDefault(DEFAULT_STYLING.dotType),
+  eye: parseAsString.withDefault(DEFAULT_STYLING.cornerSquareType),
+  grd: parseAsBoolean.withDefault(DEFAULT_STYLING.gradient.enabled),
+  grt: parseAsStringLiteral(['linear', 'radial'] as const).withDefault(DEFAULT_STYLING.gradient.type),
+  gc1: parseAsString.withDefault(DEFAULT_STYLING.gradient.startColor),
+  gc2: parseAsString.withDefault(DEFAULT_STYLING.gradient.endColor),
+  ec: parseAsStringLiteral(['L', 'M', 'Q', 'H'] as const).withDefault(DEFAULT_STYLING.errorCorrection),
+  sz: parseAsInteger.withDefault(DEFAULT_STYLING.exportSize),
+};
+
+const IMAGE_PARSERS = {
+  img: parseAsStringLiteral(['logo', 'none', 'custom'] as const).withDefault('logo'),
+};
 
 export default function Home() {
+  const [formParams, setFormParams] = useQueryStates(FORM_PARSERS, { history: 'replace' });
+  const [stylingParams, setStylingParams] = useQueryStates(STYLING_PARSERS, { history: 'replace' });
+  const [{ img: imgType }, setImgParam] = useQueryStates(IMAGE_PARSERS, { history: 'replace' });
+
+  // Freeze initial URL form values — AuracastForm uses them once for initialization
+  const initialFormValues = useRef(formParams).current;
+
+  const [uri, setUri] = useState<string | null>(null);
+  const [broadcastName, setBroadcastName] = useState('');
+  const [customImageDataUri, setCustomImageDataUri] = useState<string | null>(null);
+
+  const styling: StylingOptions = {
+    fgColor: stylingParams.fg,
+    bgColor: stylingParams.bg,
+    dotType: stylingParams.dot as DotType,
+    cornerSquareType: stylingParams.eye as CornerSquareType,
+    gradient: {
+      enabled: stylingParams.grd,
+      type: stylingParams.grt,
+      startColor: stylingParams.gc1,
+      endColor: stylingParams.gc2,
+    },
+    errorCorrection: stylingParams.ec as ErrorCorrectionLevel,
+    exportSize: stylingParams.sz as 1024 | 2048 | 4096,
+  };
+
+  function handleStylingChange(next: StylingOptions) {
+    setStylingParams({
+      fg: next.fgColor,
+      bg: next.bgColor,
+      dot: next.dotType,
+      eye: next.cornerSquareType,
+      grd: next.gradient.enabled,
+      grt: next.gradient.type,
+      gc1: next.gradient.startColor,
+      gc2: next.gradient.endColor,
+      ec: next.errorCorrection,
+      sz: next.exportSize,
+    });
+  }
+
+  function handleCentreImageChange(type: CentreImageType, dataUri?: string) {
+    setImgParam({ img: type });
+    if (type === 'custom' && dataUri) {
+      setCustomImageDataUri(dataUri);
+    } else if (type !== 'custom') {
+      setCustomImageDataUri(null);
+    }
+  }
+
+  const centreImageUri =
+    imgType === 'logo'
+      ? LOGO_URL
+      : imgType === 'custom'
+        ? customImageDataUri
+        : null;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="max-w-5xl mx-auto px-6 py-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <section className="flex-1 min-w-0">
+          <div className="bg-surface rounded-xl shadow-sm p-6">
+            <h1 className="text-base font-semibold text-body-text mb-5">
+              Configure your Auracast broadcast
+            </h1>
+            <AuracastForm
+              initialValues={initialFormValues}
+              onUriChange={setUri}
+              onBroadcastNameChange={setBroadcastName}
+              onFormValuesChange={setFormParams}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <div className="mt-5 pt-5 border-t border-primary-tint/50">
+              <CentreImagePicker
+                value={imgType}
+                hasCustomImage={customImageDataUri !== null}
+                onChange={handleCentreImageChange}
+              />
+            </div>
+            <div className="mt-5 pt-5 border-t border-primary-tint/50">
+              <AdvancedStylingAccordion value={styling} onChange={handleStylingChange} />
+            </div>
+          </div>
+        </section>
+
+        <aside className="lg:w-80 shrink-0 lg:sticky lg:top-8 lg:self-start">
+          <div className="bg-surface rounded-xl shadow-sm p-6 flex flex-col gap-4">
+            <QRPreview uri={uri} centreImageUri={centreImageUri} styling={styling} />
+            <DownloadButton
+              uri={uri}
+              broadcastName={broadcastName}
+              centreImageUri={centreImageUri}
+              styling={styling}
+            />
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }
