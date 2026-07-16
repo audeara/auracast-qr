@@ -35,11 +35,13 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Auracast QR Generator by Audeara",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Auracast QR Code Generator by Audeara" }],
   },
   twitter: {
     card: "summary_large_image",
     site: "@audeara",
     creator: "@audeara",
+    images: ["/og-image.png"],
   },
   appleWebApp: {
     capable: true,

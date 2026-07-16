@@ -29,6 +29,30 @@ async function resolveToDataUri(uri: string | null): Promise<string | undefined>
   });
 }
 
+// SVG-in-SVG via <image> is unreliable across viewers; rasterise to PNG first.
+async function rasteriseToPng(dataUri: string, size = 256): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      canvas.getContext('2d')!.drawImage(img, 0, 0, size, size);
+      resolve(canvas.toDataURL('image/png'));
+    };
+    img.onerror = reject;
+    img.src = dataUri;
+  });
+}
+
+async function resolveForSvgExport(uri: string | null): Promise<string | undefined> {
+  const dataUri = await resolveToDataUri(uri);
+  if (!dataUri) return undefined;
+  if (dataUri.startsWith('data:image/svg')) return rasteriseToPng(dataUri);
+  return dataUri;
+}
+
 function buildExportOptions(data: string, imageUri: string | undefined, styling: StylingOptions, size: number): Options {
   const { fgColor, bgColor, dotType, cornerSquareType, gradient, errorCorrection } = styling;
 
@@ -93,12 +117,14 @@ export default function DownloadButton({ uri, broadcastName, centreImageUri, sty
     if (!uri) return;
     setLoading(true);
     try {
-      const embeddedImage = await resolveToDataUri(centreImageUri);
       const size = styling.exportSize;
-      const opts = buildExportOptions(uri, embeddedImage, styling, size);
+      const [svgImage, pngImage] = await Promise.all([
+        resolveForSvgExport(centreImageUri),
+        resolveToDataUri(centreImageUri),
+      ]);
 
-      const qrSvg = new QRCodeStyling({ ...opts, type: 'svg' });
-      const qrPng = new QRCodeStyling({ ...opts, type: 'canvas' });
+      const qrSvg = new QRCodeStyling({ ...buildExportOptions(uri, svgImage, styling, size), type: 'svg' });
+      const qrPng = new QRCodeStyling({ ...buildExportOptions(uri, pngImage, styling, size), type: 'canvas' });
 
       const [svgBlob, pngBlob] = await Promise.all([
         qrSvg.getRawData('svg'),
