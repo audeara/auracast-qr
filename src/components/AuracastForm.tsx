@@ -1,11 +1,14 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useForm, useWatch, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { formSchema, FormValues } from '@/lib/schema';
 import { encodeUri } from '@/lib/uri-encoder';
+import type en from '@/dictionaries/en.json';
+
+type FormDict = typeof en.form;
 
 type FormInput = z.input<typeof formSchema>;
 
@@ -24,6 +27,7 @@ interface AuracastFormProps {
   onUriChange: (uri: string | null) => void;
   onBroadcastNameChange?: (name: string) => void;
   onFormValuesChange?: (values: FormUrlValues) => void;
+  dict: FormDict;
 }
 
 export default function AuracastForm({
@@ -31,6 +35,7 @@ export default function AuracastForm({
   onUriChange,
   onBroadcastNameChange,
   onFormValuesChange,
+  dict,
 }: AuracastFormProps) {
   const {
     register,
@@ -93,114 +98,203 @@ export default function AuracastForm({
     setValue('AD', formatted, { shouldValidate: !!currentAd });
   }
 
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+
+  const qualityOptions = [
+    { value: 'none' as const, label: dict.audioQuality.none },
+    { value: 'sq' as const, label: dict.audioQuality.standard },
+    { value: 'hq' as const, label: dict.audioQuality.high },
+    { value: 'both' as const, label: dict.audioQuality.both },
+  ];
+
   return (
-    <form className="space-y-5" noValidate>
-      <Field label="Broadcast Name" error={errors.BN?.message} required>
+    <form className="space-y-6" noValidate>
+      {/* ── Always-visible fields ── */}
+      <Field label={dict.broadcastName.label} error={errors.BN?.message} required>
         <input
           {...register('BN')}
           type="text"
-          placeholder="e.g. Main Hall Audio"
+          placeholder={dict.broadcastName.placeholder}
           maxLength={32}
           className={inputClass(!!errors.BN)}
         />
       </Field>
 
-      <Field label="Broadcast ID" error={errors.BI?.message} required>
-        <input
-          {...register('BI')}
-          type="text"
-          placeholder="e.g. 1A2B"
-          maxLength={6}
-          className={inputClass(!!errors.BI)}
-        />
-      </Field>
-
-      <Field label="Device Address" error={errors.AD?.message} hint="Optional — 12 hex characters">
-        <input
-          {...register('AD')}
-          type="text"
-          placeholder="AA:BB:CC:00:11:22"
-          maxLength={17}
-          onChange={handleAdChange}
-          className={inputClass(!!errors.AD)}
-        />
-      </Field>
-
-      <Field label="Address Type" error={errors.AT?.message}>
-        <Controller
-          control={control}
-          name="AT"
-          render={({ field }) => (
-            <div className="flex gap-2">
-              {(['0', '1'] as const).map((val) => (
-                <label
-                  key={val}
-                  className={[
-                    'flex-1 text-center text-sm font-medium py-2 rounded-lg border cursor-pointer transition-colors select-none',
-                    field.value === val
-                      ? 'bg-primary text-white border-primary'
-                      : 'bg-white text-body-text border-primary-tint hover:border-primary/40',
-                  ].join(' ')}
-                >
-                  <input
-                    type="radio"
-                    value={val}
-                    checked={field.value === val}
-                    onChange={() => field.onChange(val)}
-                    className="sr-only"
-                  />
-                  {val === '0' ? 'Public' : 'Random'}
-                </label>
-              ))}
-            </div>
-          )}
-        />
-      </Field>
-
-      <Field label="Audio Quality" error={errors.quality?.message}>
-        <select {...register('quality')} className={inputClass(!!errors.quality)}>
-          <option value="none">Not specified</option>
-          <option value="sq">Standard Quality</option>
-          <option value="hq">High Quality</option>
-          <option value="both">Both</option>
-        </select>
-      </Field>
-
       <div className="flex items-center gap-3">
-        <input
-          {...register('encrypted')}
-          type="checkbox"
-          id="encrypted"
-          className="w-4 h-4 rounded border-primary-tint accent-primary cursor-pointer"
-        />
-        <label htmlFor="encrypted" className="text-sm font-medium text-body-text cursor-pointer">
-          Encrypted broadcast
+        <label htmlFor="encrypted" className="text-base font-medium text-body-text cursor-pointer">
+          {dict.encrypted.label}
+        </label>
+        <Tooltip text={dict.encrypted.tooltip} />
+        <label htmlFor="encrypted" className="relative inline-flex items-center cursor-pointer">
+          <input
+            {...register('encrypted')}
+            type="checkbox"
+            id="encrypted"
+            className="sr-only peer"
+          />
+          <div className="w-11 h-6 rounded-full transition-colors duration-200 ease-in-out bg-gray-300 peer-checked:bg-primary after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:shadow after:transition-transform after:duration-200 after:ease-in-out peer-checked:after:translate-x-5" />
         </label>
       </div>
 
-      {encrypted && (
-        <Field label="Broadcast Code" error={errors.BC?.message} required hint="Max 16 characters">
-          <input
-            {...register('BC')}
-            type="text"
-            placeholder="Enter broadcast code"
-            maxLength={16}
-            className={inputClass(!!errors.BC)}
-          />
-        </Field>
-      )}
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${encrypted ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+      >
+        <div className="overflow-hidden">
+          <Field
+            label={dict.broadcastCode.label}
+            error={errors.BC?.message}
+            required
+            hint={dict.broadcastCode.hint}
+            tooltip={dict.broadcastCode.tooltip}
+          >
+            <input
+              {...register('BC')}
+              type="text"
+              placeholder={dict.broadcastCode.placeholder}
+              maxLength={16}
+              className={inputClass(!!errors.BC)}
+            />
+          </Field>
+        </div>
+      </div>
+
+      {/* ── Advanced accordion ── */}
+      <div className="border border-body-text/15 rounded-2xl overflow-hidden">
+        <button
+          type="button"
+          onClick={() => setAdvancedOpen((o) => !o)}
+          className="w-full flex items-center justify-between px-5 py-4 text-base font-semibold text-body-text hover:bg-primary/5 transition-colors"
+          aria-expanded={advancedOpen}
+        >
+          <span>{dict.advanced}</span>
+          <svg
+            width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"
+            className={['transition-transform duration-200', advancedOpen ? 'rotate-180' : ''].join(' ')}
+          >
+            <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        {advancedOpen && (
+          <div className="px-5 pb-6 border-t border-body-text/15">
+            <div className="pt-6 space-y-6">
+
+              <Field
+                label={dict.broadcastId.label}
+                error={errors.BI?.message}
+                tooltip={dict.broadcastId.tooltip}
+              >
+                <input
+                  {...register('BI')}
+                  type="text"
+                  placeholder={dict.broadcastId.placeholder}
+                  maxLength={6}
+                  className={inputClass(!!errors.BI)}
+                />
+              </Field>
+
+              <Field
+                label={dict.deviceAddress.label}
+                error={errors.AD?.message}
+                hint={dict.deviceAddress.hint}
+                tooltip={dict.deviceAddress.tooltip}
+              >
+                <input
+                  {...register('AD')}
+                  type="text"
+                  placeholder={dict.deviceAddress.placeholder}
+                  maxLength={17}
+                  onChange={handleAdChange}
+                  className={inputClass(!!errors.AD)}
+                />
+              </Field>
+
+              <Field
+                label={dict.addressType.label}
+                error={errors.AT?.message}
+                tooltip={dict.addressType.tooltip}
+              >
+                <Controller
+                  control={control}
+                  name="AT"
+                  render={({ field }) => (
+                    <div className="flex gap-2">
+                      {(['0', '1'] as const).map((val) => (
+                        <label
+                          key={val}
+                          className={[
+                            'flex-1 text-center text-base font-medium py-3 rounded-xl border-2 cursor-pointer transition-colors select-none',
+                            field.value === val
+                              ? 'bg-primary text-white border-primary'
+                              : 'bg-surface text-body-text border-primary hover:bg-primary/5',
+                          ].join(' ')}
+                        >
+                          <input
+                            type="radio"
+                            value={val}
+                            checked={field.value === val}
+                            onChange={() => field.onChange(val)}
+                            className="sr-only"
+                          />
+                          {val === '0' ? dict.addressType.public : dict.addressType.random}
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                />
+              </Field>
+
+              <Field
+                label={dict.audioQuality.label}
+                error={errors.quality?.message}
+                tooltip={dict.audioQuality.tooltip}
+              >
+                <Controller
+                  control={control}
+                  name="quality"
+                  render={({ field }) => (
+                    <div className="grid grid-cols-2 gap-2">
+                      {qualityOptions.map((opt) => (
+                        <label
+                          key={opt.value}
+                          className={[
+                            'text-center text-base font-medium py-3 rounded-xl border-2 cursor-pointer transition-colors select-none',
+                            field.value === opt.value
+                              ? 'bg-primary text-white border-primary'
+                              : 'bg-surface text-body-text border-primary hover:bg-primary/5',
+                          ].join(' ')}
+                        >
+                          <input
+                            type="radio"
+                            value={opt.value}
+                            checked={field.value === opt.value}
+                            onChange={() => field.onChange(opt.value)}
+                            className="sr-only"
+                          />
+                          {opt.label}
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                />
+              </Field>
+
+            </div>
+          </div>
+        )}
+      </div>
     </form>
   );
 }
 
 function inputClass(hasError: boolean) {
   return [
-    'w-full rounded-lg border px-3 py-2 text-sm bg-white text-body-text',
+    'w-full rounded-xl border-2 px-4 py-3 text-base bg-surface text-body-text placeholder:text-body-text/40',
     'focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary',
     'transition-colors',
     hasError
       ? 'border-error focus:ring-error/30 focus:border-error'
-      : 'border-primary-tint hover:border-primary/40',
+      : 'border-body-text/25 hover:border-body-text/40',
   ].join(' ');
 }
 
@@ -209,16 +303,20 @@ interface FieldProps {
   error?: string;
   hint?: string;
   required?: boolean;
+  tooltip?: string;
   children: React.ReactNode;
 }
 
-function Field({ label, error, hint, required, children }: FieldProps) {
+function Field({ label, error, hint, required, tooltip, children }: FieldProps) {
   return (
-    <div className="space-y-1">
-      <label className="block text-sm font-medium text-body-text">
-        {label}
-        {required && <span className="text-error ml-0.5">*</span>}
-      </label>
+    <div className="space-y-1.5">
+      <span className="flex items-center gap-1">
+        <label className="block text-sm font-semibold text-body-text">
+          {label}
+          {required && <span className="text-error ml-0.5">*</span>}
+        </label>
+        {tooltip && <Tooltip text={tooltip} />}
+      </span>
       {children}
       {hint && !error && <p className="text-xs text-body-text/50">{hint}</p>}
       {error && (
@@ -227,5 +325,32 @@ function Field({ label, error, hint, required, children }: FieldProps) {
         </p>
       )}
     </div>
+  );
+}
+
+function Tooltip({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <span className="relative inline-block">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        onBlur={() => setOpen(false)}
+        aria-label="More information"
+        className="w-4 h-4 inline-flex items-center justify-center rounded-full bg-body-text/10 text-body-text/50 text-[10px] font-bold leading-none cursor-help focus:outline-none focus:ring-2 focus:ring-primary/40 hover:bg-primary/20 hover:text-primary transition-colors"
+      >
+        i
+      </button>
+      {open && (
+        <span
+          role="tooltip"
+          className="absolute left-0 top-full mt-2 w-72 bg-neutral-900 border border-white/10 text-white text-xs rounded-xl p-3 z-20 leading-relaxed shadow-xl"
+        >
+          {text}
+          <span className="absolute -top-1.5 left-2 border-4 border-transparent border-b-neutral-900" />
+        </span>
+      )}
+    </span>
   );
 }

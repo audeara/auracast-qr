@@ -1,0 +1,357 @@
+{
+  "header": {
+    "title": "Auracast QR 生成器",
+    "nav": {
+      "whatIsAuracast": "什么是 Auracast？",
+      "howCodesWork": "代码如何工作"
+    }
+  },
+  "footer": {
+    "poweredBy": "由 Audeara 提供支持"
+  },
+  "home": {
+    "heading": "配置您的 Auracast 广播"
+  },
+  "form": {
+    "broadcastName": {
+      "label": "广播名称",
+      "placeholder": "例如：主厅音频"
+    },
+    "broadcastId": {
+      "label": "广播 ID",
+      "placeholder": "例如：1A2B",
+      "tooltip": "用于唯一标识此广播的短代码。您的 AV 技术人员可在广播设备的设置中找到它。仅使用数字和字母 A–F（例如：1A2B 或 FF003C），长度为 1 至 6 个字符。"
+    },
+    "deviceAddress": {
+      "label": "设备地址",
+      "hint": "可选 — 12 个十六进制字符",
+      "placeholder": "AA:BB:CC:00:11:22",
+      "tooltip": "广播发射器的 Bluetooth 硬件地址，类似于设备的序列号。您的 AV 技术人员可在设备的设置菜单或设备标签上找到它，格式如 AA:BB:CC:00:11:22。如果不确定，可以留空。"
+    },
+    "addressType": {
+      "label": "地址类型",
+      "tooltip": "描述您的广播设备通过 Bluetooth 标识自身的方式。\"公共\"表示使用固定的永久地址，这是场馆设备最常见的设置。\"随机\"表示地址会定期更改以保护隐私。如有疑问，请选择\"公共\"或咨询您的 AV 技术人员。",
+      "public": "公共",
+      "random": "随机"
+    },
+    "audioQuality": {
+      "label": "音频质量",
+      "tooltip": "表示您的广播所支持的音频质量级别。\"标准\"（SQ）适用于大多数兼容 Auracast 的设备。\"高质量\"（HQ）提供更好的音频效果，但需要较新的接收器。如果您的设备同时发送两种质量级别，请选择\"两者\"。如有疑问，请查阅广播设备的文档或咨询您的 AV 技术人员。",
+      "none": "无",
+      "standard": "标准",
+      "high": "高质量",
+      "both": "两者"
+    },
+    "encrypted": {
+      "label": "加密广播",
+      "tooltip": "如果您的广播受密码保护，请勾选此项。加密广播要求收听者在收听前输入访问码。该访问码在广播设备上设置——启用此选项前请向您的 AV 技术人员获取。"
+    },
+    "broadcastCode": {
+      "label": "广播访问码",
+      "hint": "最多 16 个字符",
+      "placeholder": "输入广播访问码",
+      "tooltip": "收听者访问加密广播所需的密码。此访问码在广播设备上配置——您的 AV 技术人员可以提供。最长为 16 个字符。"
+    },
+    "advanced": "高级设置"
+  },
+  "preview": {
+    "title": "QR 预览",
+    "generatedUri": "生成的 URI",
+    "placeholder": "输入广播名称（至少 4 个字符）以查看 QR 码"
+  },
+  "download": {
+    "download": "下载 ZIP",
+    "generating": "生成中…",
+    "copy": "复制",
+    "copied": "已复制"
+  },
+  "centreImage": {
+    "label": "中心图像",
+    "auracastLogo": "Auracast 标志",
+    "none": "无",
+    "custom": "自定义",
+    "replace": "替换图像…",
+    "upload": "上传图像…",
+    "warning": "自定义图像不包含在可分享的 URL 中——协作者需要重新上传。"
+  },
+  "styling": {
+    "title": "QR 样式选项",
+    "dotStyle": "点样式",
+    "cornerStyle": "角样式",
+    "colours": "颜色",
+    "gradientFill": "渐变填充",
+    "start": "起始",
+    "end": "结束",
+    "foreground": "前景色",
+    "background": "背景色",
+    "errorCorrection": "纠错级别",
+    "exportSize": "导出尺寸"
+  },
+  "whatIsAuracast": {
+    "meta": {
+      "title": "什么是 Auracast？Bluetooth 广播音频详解",
+      "description": "了解 Auracast Bluetooth 广播音频的工作原理——它帮助哪些人群、在哪些场所部署，以及为何它正在改变公共场所的听力无障碍体验。"
+    },
+    "hero": {
+      "heading": "什么是 Auracast？",
+      "p1": "Auracast 是由 Bluetooth 特别兴趣组（SIG）开发的 Bluetooth 广播音频标准。它允许单个设备——电视、公共广播系统或专用发射器——同时向附近无限数量的收听者传输音频，收听者无需任何配对或设置。",
+      "p2": "可以将其理解为本地广播电台，但通过 Bluetooth 传输。任何拥有兼容设备的人，只要在覆盖范围内，即可随时收听。"
+    },
+    "difference": {
+      "heading": "它与普通 Bluetooth 有何不同？",
+      "p": "标准 Bluetooth 专为私密的一对一连接而设计——例如手机与耳机之间的连接，每个连接是独占且配对的。Auracast 则以相反的方式工作：它像公共信号一样向外广播音频，任意数量的兼容设备可以同时接收。",
+      "classicTitle": "经典 Bluetooth",
+      "classicBullets": [
+        "一对一设备连接",
+        "需要配对",
+        "私密连接"
+      ],
+      "auracastTitle": "Auracast",
+      "auracastBullets": [
+        "一对无限数量的收听者",
+        "无需配对",
+        "开放广播"
+      ]
+    },
+    "who": {
+      "heading": "Auracast 帮助哪些人群？",
+      "p": "Auracast 以无障碍访问为核心设计理念。虽然任何人都可以使用，但它对依赖听力技术的人群影响最为深远。",
+      "cards": [
+        {
+          "icon": "🦵",
+          "heading": "助听器和人工耳蜗用户",
+          "body": "现代助听器和人工耳蜗越来越多地支持 Bluetooth LE Audio。Auracast 让他们能够直接从场馆的音响系统接收清晰的音频——完全屏蔽背景噪音。"
+        },
+        {
+          "icon": "🔊",
+          "heading": "噪音环境中的任何人",
+          "body": "拥挤的机场、繁忙的车站或回声嘈杂的大厅对每个人都是挑战。Auracast 将音频直接传送给收听者，绕过环境中的声学干扰。"
+        },
+        {
+          "icon": "🌍",
+          "heading": "多语言受众",
+          "body": "同一空间可以同时在多个 Auracast 频道上广播——每种语言对应一个频道。与会者无需领取任何实体设备，即可选择自己偏好的音频流。"
+        }
+      ]
+    },
+    "where": {
+      "heading": "Auracast 应用于哪些场所？",
+      "p": "Auracast 适用于任何对音频有需求的公共场所。目前早期部署已出现在：",
+      "venues": [
+        {
+          "icon": "✈️",
+          "heading": "机场及交通枢纽",
+          "desc": "登机口通知直接推送给旅客"
+        },
+        {
+          "icon": "🎭",
+          "heading": "剧院及影院",
+          "desc": "无需感应环接收器，即可清晰收听对白"
+        },
+        {
+          "icon": "🏛️",
+          "heading": "礼拜场所",
+          "desc": "讲道和音乐传送至每个座位"
+        },
+        {
+          "icon": "🏟️",
+          "heading": "会议及活动场馆",
+          "desc": "同声传译及无障碍音频"
+        },
+        {
+          "icon": "🏥",
+          "heading": "医院及等候区",
+          "desc": "收听电视音频而不影响他人"
+        },
+        {
+          "icon": "🚌",
+          "heading": "公共交通",
+          "desc": "实时出行信息及广播通知"
+        }
+      ]
+    },
+    "qrCodes": {
+      "heading": "QR 码的作用是什么？",
+      "p1": "在繁忙的场馆中找到正确的 Auracast 广播可能比较麻烦——就像从一长串列表中选择正确的 Wi-Fi 网络一样。Auracast QR 码可以即刻解决这个问题。",
+      "p2": "兼容设备扫描该码后直接连接到正确的广播——无需滚动翻找，无需猜测。QR 码包含了广播的名称、Bluetooth 标识符，以及可选的加密流安全密码。",
+      "p3": "场馆将这些码印在座椅、墙面、节目单或屏幕上——与展示 Wi-Fi QR 码的方式相同。"
+    },
+    "cta": {
+      "heading": "准备好创建二维码了吗？",
+      "subtext": "几秒钟内生成符合 SIG 规范的 Auracast QR 码。",
+      "button": "打开生成器"
+    },
+    "learnMore": {
+      "text": "想了解 QR 码字符串的具体构造方式？",
+      "link": "阅读代码生成说明 →"
+    }
+  },
+  "howCodesAreGenerated": {
+    "meta": {
+      "title": "Auracast QR 码的工作原理——URI 格式详解",
+      "description": "以通俗易懂的语言解析每个 Auracast QR 码内部的 Bluetooth URI——逐字段说明，附实例演示及 Base64 编码的终端命令。"
+    },
+    "hero": {
+      "heading": "Auracast QR 码是如何生成的",
+      "p": "每个 Auracast QR 码都包含一个特定格式的文本字符串——即 Bluetooth URI。本页将逐字段详细说明该字符串的内容及构建方式。"
+    },
+    "atAGlance": {
+      "heading": "URI 概览",
+      "p": "该字符串遵循 Bluetooth SIG Auracast 规范。以下是一个名为\"Airport\"的广播示例，使用公共 Bluetooth 地址和高质量音频流：",
+      "note": "每条信息之间以分号分隔，字符串始终以双分号结尾。"
+    },
+    "fields": {
+      "heading": "各字段含义说明",
+      "optional": "可选",
+      "exampleValue": "示例值：",
+      "rows": [
+        {
+          "field": "UUID:184F",
+          "value": "184F",
+          "label": "Auracast 服务标识符",
+          "description": "此值固定不变。184F 是 Bluetooth SIG 为公共广播音频分配的 UUID——它告知任何扫描设备，此 QR 码属于 Auracast 广播，而非普通 Bluetooth 设备。",
+          "optional": false
+        },
+        {
+          "field": "BN:<base64>",
+          "value": "QWlycG9ydA==",
+          "label": "广播名称",
+          "description": "广播的可读名称，以 Base64 编码。Base64 将文本转换为一组可打印的安全字符序列，使任何名称——包括带重音的字母或非英语字符——都能在 URI 中完整保留。例如，名称\"Airport\"编码后变为 QWlycG9ydA==，末尾的 == 是标准 Base64 填充符。",
+          "optional": false
+        },
+        {
+          "field": "AT:<0 or 1>",
+          "value": "0",
+          "label": "地址类型",
+          "description": "描述广播设备所使用的 Bluetooth 地址类型。0 表示公共（永久）地址，每次保持不变；1 表示随机地址，部分设备会定期更换以保护隐私。仅当同时提供了广播商地址（AD）时，才会在 URI 中包含此字段。",
+          "optional": true
+        },
+        {
+          "field": "AD:<12 hex chars>",
+          "value": "A1B2C3D4E5F6",
+          "label": "广播商地址",
+          "description": "广播设备的 Bluetooth MAC 地址，以 12 个大写十六进制字符表示，不含冒号。例如，A1:B2:C3:D4:E5:F6 变为 A1B2C3D4E5F6。包含此字段有助于接收器精准锁定特定广播设备，而非附近同名的任意设备。",
+          "optional": true
+        },
+        {
+          "field": "BI:<hex>",
+          "value": "1A2B3C",
+          "label": "广播 ID",
+          "description": "广播流的唯一标识符，以十六进制表示（1 至 6 个字符）。由广播商指定，用于将其与同区域内其他 Auracast 流区分开来。",
+          "optional": false
+        },
+        {
+          "field": "SQ:1",
+          "value": "SQ:1",
+          "label": "标准质量音频流",
+          "description": "仅当广播包含标准质量音频流时存在。标准质量占用带宽较少，适用于语音、广播通知或低功耗场景。如果不提供此流，则完全省略该字段。",
+          "optional": true
+        },
+        {
+          "field": "HQ:1",
+          "value": "HQ:1",
+          "label": "高质量音频流",
+          "description": "仅当广播包含高质量音频流时存在。高质量提供更丰富、更饱满的音效，适用于音乐、娱乐或高品质收听体验。如果广播商同时提供两种质量，SQ:1 和 HQ:1 可以同时出现。",
+          "optional": true
+        },
+        {
+          "field": "BC:<base64>",
+          "value": "bXlrZXkAAAAAAAAAAAAAAA==",
+          "label": "广播访问码",
+          "description": "仅用于加密广播。这是收听者访问音频所需的密码，以 Base64 编码。原始密码在编码前会被填充至恰好 16 字节，以确保长度一致。没有正确的访问码，设备可以发现广播的存在，但无法解密音频。",
+          "optional": true
+        }
+      ]
+    },
+    "base64": {
+      "heading": "为什么使用 Base64？",
+      "p": "Auracast URI 格式使用分号作为分隔符。如果广播名称本身包含分号，将破坏整体结构。Base64 解决了这个问题：它将任何文本——包括特殊字符、表情符号或非英语脚本——转换为仅使用 64 个安全字符（A–Z、a–z、0–9、+ 和 /，以及可选的 = 填充符）的字符串。",
+      "notice": "请注意\"Café\"中带重音的 é 是如何被清晰处理的——Base64 输出与输入看起来毫无关联，但每次都能完美解码还原。",
+      "terminal": {
+        "heading": "在终端中亲自尝试",
+        "macos": {
+          "title": "macOS — 终端",
+          "encode": "编码",
+          "decode": "解码"
+        },
+        "linux": {
+          "title": "Linux — 终端",
+          "note": "命令与 macOS 完全相同。",
+          "encode": "编码",
+          "decode": "解码"
+        },
+        "windows": {
+          "title": "Windows — PowerShell",
+          "note": "Windows 没有内置的 base64 命令，但 PowerShell 原生支持此功能。额外指定 UTF-8 的步骤可确保带重音或非英语字符的编码结果正确。",
+          "encode": "编码",
+          "decode": "解码"
+        },
+        "flagNote": "在 macOS 和 Linux 上，echo 命令的 -n 标志非常重要——若不加此标志，末尾的换行符会被包含在编码中，导致结果出错。"
+      }
+    },
+    "workedExample": {
+      "heading": "实例演示",
+      "p": "让我们为以下广播逐步构建 URI：",
+      "tableLabels": {
+        "broadcastName": "广播名称",
+        "broadcastId": "广播 ID",
+        "addressType": "地址类型",
+        "advertiserAddress": "广播商地址",
+        "quality": "质量",
+        "encrypted": "加密"
+      },
+      "tableValues": {
+        "broadcastName": "\"Airport\"",
+        "broadcastId": "1A2B3C",
+        "addressType": "公共（0）",
+        "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "quality": "仅高质量",
+        "encrypted": "否"
+      },
+      "steps": [
+        {
+          "label": "从 Auracast 服务标识符开始",
+          "note": "此前缀固定不变。"
+        },
+        {
+          "label": "附加广播名称",
+          "note": "\"Airport\" → Base64 编码 → QWlycG9ydA=="
+        },
+        {
+          "label": "附加地址类型",
+          "note": "0 = 公共地址"
+        },
+        {
+          "label": "附加广播商地址",
+          "note": "去除冒号，转为大写——A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
+        },
+        {
+          "label": "附加广播 ID",
+          "note": "该流的唯一十六进制标识符"
+        },
+        {
+          "label": "附加质量标志",
+          "note": "因选择高质量，添加 HQ:1；省略 SQ:1。"
+        },
+        {
+          "label": "以双分号结束",
+          "note": "末尾的 ;; 表示 Auracast URI 的结束。"
+        }
+      ]
+    },
+    "completeUri": {
+      "heading": "完整 URI",
+      "p": "这是最终嵌入 QR 码的字符串。任何兼容的 Bluetooth 设备扫描后均可直接连接到该广播。",
+      "note": "QR 码以可用的最高纠错级别从此字符串生成，即使部分内容被遮挡或损坏，仍可正常扫描。"
+    },
+    "cta": {
+      "heading": "亲自试试",
+      "subtext": "填写您的广播信息，实时查看 URI 的变化。",
+      "button": "打开生成器"
+    },
+    "learnMore": {
+      "text": "刚接触 Auracast？",
+      "link": "阅读我们的入门介绍 →"
+    }
+  }
+}

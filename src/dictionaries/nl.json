@@ -1,0 +1,357 @@
+{
+  "header": {
+    "title": "Auracast QR Generator",
+    "nav": {
+      "whatIsAuracast": "Wat is Auracast?",
+      "howCodesWork": "Hoe codes werken"
+    }
+  },
+  "footer": {
+    "poweredBy": "Mogelijk gemaakt door Audeara"
+  },
+  "home": {
+    "heading": "Configureer uw Auracast-uitzending"
+  },
+  "form": {
+    "broadcastName": {
+      "label": "Uitzendnaam",
+      "placeholder": "bijv. Grote Zaal Audio"
+    },
+    "broadcastId": {
+      "label": "Uitzend-ID",
+      "placeholder": "bijv. 1A2B",
+      "tooltip": "Een korte code die deze uitzending uniek identificeert. Uw AV-technicus vindt deze in de instellingen van de uitzendapparatuur. Er worden alleen cijfers en de letters A–F gebruikt (bijvoorbeeld: 1A2B of FF003C). De code kan 1 tot 6 tekens lang zijn."
+    },
+    "deviceAddress": {
+      "label": "Apparaatadres",
+      "hint": "Optioneel — 12 hexadecimale tekens",
+      "placeholder": "AA:BB:CC:00:11:22",
+      "tooltip": "Het Bluetooth-hardwareadres van uw uitzendtransmitter — vergelijkbaar met een serienummer van het apparaat. Uw AV-technicus kan dit vinden in het instellingenmenu van het apparaat of op een sticker op de apparatuur zelf. Het ziet eruit als AA:BB:CC:00:11:22. U kunt dit leeg laten als u het niet zeker weet."
+    },
+    "addressType": {
+      "label": "Adrestype",
+      "tooltip": "Beschrijft hoe uw uitzendapparaat zichzelf identificeert via Bluetooth. 'Openbaar' betekent dat het een vast, permanent adres gebruikt — de meest voorkomende instelling voor locatieapparatuur. 'Willekeurig' betekent dat het adres periodiek wisselt voor privacydoeleinden. Kies bij twijfel voor Openbaar of vraag het uw AV-technicus.",
+      "public": "Openbaar",
+      "random": "Willekeurig"
+    },
+    "audioQuality": {
+      "label": "Audiokwaliteit",
+      "tooltip": "Geeft aan welke audiokwaliteitsniveaus uw uitzending ondersteunt. 'Standaard' (SQ) werkt op de meeste Auracast-compatibele apparaten. 'Hoog' (HQ) levert betere audio maar vereist nieuwere ontvangers. Kies 'Beide' als uw apparatuur beide kwaliteitsniveaus tegelijk uitzendt. Raadpleeg de documentatie van uw uitzendapparatuur als u het niet zeker weet — of vraag het uw AV-technicus.",
+      "none": "Geen",
+      "standard": "Standaard",
+      "high": "Hoog",
+      "both": "Beide"
+    },
+    "encrypted": {
+      "label": "Versleutelde uitzending",
+      "tooltip": "Vink dit aan als uw uitzending met een wachtwoord is beveiligd. Versleutelde uitzendingen vereisen dat luisteraars een code invoeren voordat ze kunnen afstemmen. De code wordt ingesteld op uw uitzendapparatuur — vraag uw AV-technicus ernaar voordat u deze optie inschakelt."
+    },
+    "broadcastCode": {
+      "label": "Uitzendcode",
+      "hint": "Max. 16 tekens",
+      "placeholder": "Voer uitzendcode in",
+      "tooltip": "Het wachtwoord dat luisteraars nodig hebben om toegang te krijgen tot uw versleutelde uitzending. Deze code wordt geconfigureerd op uw uitzendapparatuur — uw AV-technicus kan deze verstrekken. De code mag maximaal 16 tekens lang zijn."
+    },
+    "advanced": "Geavanceerd"
+  },
+  "preview": {
+    "title": "QR-voorbeeld",
+    "generatedUri": "Gegenereerde URI",
+    "placeholder": "Voer een uitzendnaam in (min. 4 tekens) om uw QR-code te bekijken"
+  },
+  "download": {
+    "download": "ZIP downloaden",
+    "generating": "Genereren…",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd!"
+  },
+  "centreImage": {
+    "label": "Middelste afbeelding",
+    "auracastLogo": "Auracast-logo",
+    "none": "Geen",
+    "custom": "Aangepast",
+    "replace": "Afbeelding vervangen…",
+    "upload": "Afbeelding uploaden…",
+    "warning": "Aangepaste afbeeldingen worden niet opgenomen in de deelbare URL — medewerkers moeten ze opnieuw uploaden."
+  },
+  "styling": {
+    "title": "QR-stijlopties",
+    "dotStyle": "Puntsstijl",
+    "cornerStyle": "Hoekstijl",
+    "colours": "Kleuren",
+    "gradientFill": "Kleurverloop",
+    "start": "Begin",
+    "end": "Einde",
+    "foreground": "Voorgrond",
+    "background": "Achtergrond",
+    "errorCorrection": "Foutcorrectie",
+    "exportSize": "Exportgrootte"
+  },
+  "whatIsAuracast": {
+    "meta": {
+      "title": "Wat is Auracast? Bluetooth-broadcastaudio uitgelegd",
+      "description": "Ontdek hoe Auracast Bluetooth-broadcastaudio werkt — wie er baat bij heeft, waar het wordt ingezet en waarom het de toegankelijkheid van audio in openbare ruimten transformeert."
+    },
+    "hero": {
+      "heading": "Wat is Auracast?",
+      "p1": "Auracast is een Bluetooth-broadcastaudiostandaard ontwikkeld door de Bluetooth Special Interest Group (SIG). Het stelt één apparaat — een televisie, een PA-systeem of een speciale transmitter — in staat om audio tegelijkertijd naar een onbeperkt aantal nabije luisteraars te streamen, zonder dat er koppeling of instelling vereist is aan de kant van de luisteraar.",
+      "p2": "Vergelijk het met een lokaal radiostation, maar dan via Bluetooth. Iedereen met een compatibel apparaat kan afstemmen door simpelweg binnen bereik te zijn."
+    },
+    "difference": {
+      "heading": "Wat is het verschil met gewone Bluetooth?",
+      "p": "Standaard Bluetooth is ontworpen voor privé, één-op-één verbindingen — bijvoorbeeld uw telefoon naar uw oordopjes. Elke verbinding is exclusief en gekoppeld. Auracast werkt precies andersom: het zendt audio uit als een openbaar signaal, en elk compatibel apparaat kan dit tegelijk ontvangen.",
+      "classicTitle": "Klassiek Bluetooth",
+      "classicBullets": [
+        "Één apparaat naar één apparaat",
+        "Koppeling vereist",
+        "Privéverbinding"
+      ],
+      "auracastTitle": "Auracast",
+      "auracastBullets": [
+        "Één apparaat naar onbeperkte luisteraars",
+        "Geen koppeling nodig",
+        "Open uitzending"
+      ]
+    },
+    "who": {
+      "heading": "Voor wie is Auracast bedoeld?",
+      "p": "Auracast is ontworpen met toegankelijkheid als kern. Hoewel iedereen er gebruik van kan maken, heeft het de grootste impact voor mensen die afhankelijk zijn van hoorhulpmiddelen.",
+      "cards": [
+        {
+          "icon": "🦵",
+          "heading": "Gebruikers van hoortoestellen en cochleaire implantaten",
+          "body": "Moderne hoortoestellen en cochleaire implantaten zijn in toenemende mate compatibel met Bluetooth LE Audio. Auracast stelt hen in staat kristalhelder geluid rechtstreeks van het geluidssysteem van een locatie te streamen — waarbij achtergrondgeluid volledig wordt uitgesloten."
+        },
+        {
+          "icon": "🔊",
+          "heading": "Iedereen in een rumoerige omgeving",
+          "body": "Drukke luchthavens, drukke stations of galm-rijke zalen zijn voor iedereen lastig. Auracast levert audio rechtstreeks bij de luisteraar af, waarbij de akoestische chaos van de ruimte wordt omzeild."
+        },
+        {
+          "icon": "🌍",
+          "heading": "Meertalige doelgroepen",
+          "body": "Eén ruimte kan tegelijkertijd op meerdere Auracast-kanalen uitzenden — één per taal. Bezoekers kiezen hun gewenste stream zonder dat er fysieke apparatuur hoeft te worden uitgedeeld."
+        }
+      ]
+    },
+    "where": {
+      "heading": "Waar wordt Auracast gebruikt?",
+      "p": "Auracast is ontworpen voor elke openbare ruimte waar audio van belang is. Vroege implementaties zijn te vinden in:",
+      "venues": [
+        {
+          "icon": "✈️",
+          "heading": "Luchthavens & vervoersknooppunten",
+          "desc": "Gate-aankondigingen rechtstreeks gestreamd naar passagiers"
+        },
+        {
+          "icon": "🎭",
+          "heading": "Theaters & bioscopen",
+          "desc": "Kristalhelder dialoog zonder een ringleusontvanger"
+        },
+        {
+          "icon": "🏛️",
+          "heading": "Gebedshuizen",
+          "desc": "Preken en muziek afgeleverd op elke zitplaats"
+        },
+        {
+          "icon": "🏟️",
+          "heading": "Congres- & evenementenlocaties",
+          "desc": "Simultaanvertaling en toegankelijke audio"
+        },
+        {
+          "icon": "🏥",
+          "heading": "Ziekenhuizen & wachtruimten",
+          "desc": "Tv-audio zonder anderen te storen"
+        },
+        {
+          "icon": "🚌",
+          "heading": "Openbaar vervoer",
+          "desc": "Realtime reisinformatie en aankondigingen"
+        }
+      ]
+    },
+    "qrCodes": {
+      "heading": "Welke rol spelen QR-codes?",
+      "p1": "De juiste Auracast-uitzending vinden in een drukke locatie kan lastig zijn — net als het kiezen van het juiste Wi-Fi-netwerk uit een lange lijst. Een Auracast-QR-code lost dit direct op.",
+      "p2": "Een compatibel apparaat scant de code en maakt direct verbinding met de juiste uitzending — geen scrollen, geen gissen. De QR-code codeert de naam van de uitzending, de Bluetooth-identificatie en optioneel een beveiligingswachtwoord voor versleutelde streams.",
+      "p3": "Locaties drukken deze codes af op stoelen, muren, programmaboekjes of schermen — op dezelfde manier als waarop u een Wi-Fi-QR-code zou weergeven."
+    },
+    "cta": {
+      "heading": "Klaar om een code aan te maken?",
+      "subtext": "Genereer in enkele seconden een SIG-conforme Auracast-QR-code.",
+      "button": "Open de generator"
+    },
+    "learnMore": {
+      "text": "Wilt u precies begrijpen hoe de QR-codestring is opgebouwd?",
+      "link": "Lees hoe codes worden gegenereerd →"
+    }
+  },
+  "howCodesAreGenerated": {
+    "meta": {
+      "title": "Hoe Auracast QR-codes werken — URI-indeling uitgelegd",
+      "description": "Een begrijpelijke uitleg van de Bluetooth-URI in elke Auracast-QR-code — veld voor veld, met uitgewerkte voorbeelden en terminalopdrachten voor Base64-codering."
+    },
+    "hero": {
+      "heading": "Hoe Auracast QR-codes worden gegenereerd",
+      "p": "Elke Auracast-QR-code bevat een speciaal opgemaakte tekststring — een Bluetooth-URI. Op deze pagina wordt precies uitgelegd wat die string bevat en hoe deze is opgebouwd, veld voor veld."
+    },
+    "atAGlance": {
+      "heading": "De URI in één oogopslag",
+      "p": "De string volgt de Bluetooth SIG Auracast-specificatie. Hier is een volledig voorbeeld voor een uitzending genaamd \"Airport\" met een openbaar Bluetooth-adres en een High Quality-stream:",
+      "note": "Elk stuk informatie wordt gescheiden door een puntkomma. De string eindigt altijd met een dubbele puntkomma."
+    },
+    "fields": {
+      "heading": "Wat elk veld betekent",
+      "optional": "optioneel",
+      "exampleValue": "Voorbeeldwaarde:",
+      "rows": [
+        {
+          "field": "UUID:184F",
+          "value": "184F",
+          "label": "Auracast-service-identificatie",
+          "description": "Dit verandert nooit. 184F is de door Bluetooth SIG toegewezen UUID voor Public Broadcast Audio — het vertelt elk scannend apparaat dat deze QR-code voor een Auracast-uitzending is, niet voor een gewoon Bluetooth-apparaat.",
+          "optional": false
+        },
+        {
+          "field": "BN:<base64>",
+          "value": "QWlycG9ydA==",
+          "label": "Uitzendnaam",
+          "description": "De voor mensen leesbare naam van de uitzending, gecodeerd in Base64. Base64 zet tekst om in een veilige reeks afdrukbare tekens, zodat elke naam — inclusief letters met accenten of niet-Engelse tekens — intact blijft in de URI. De naam \"Airport\" wordt bijvoorbeeld QWlycG9ydA==. De == aan het einde is standaard Base64-opvulling.",
+          "optional": false
+        },
+        {
+          "field": "AT:<0 or 1>",
+          "value": "0",
+          "label": "Adrestype",
+          "description": "Beschrijft het type Bluetooth-adres dat de uitzender gebruikt. 0 betekent een openbaar (permanent) adres — elke keer hetzelfde. 1 betekent een willekeurig adres, dat sommige apparaten wisselen voor privacy. Alleen opgenomen in de URI als er ook een adverteerderadres is opgegeven.",
+          "optional": true
+        },
+        {
+          "field": "AD:<12 hex chars>",
+          "value": "A1B2C3D4E5F6",
+          "label": "Adverteerderadres",
+          "description": "Het Bluetooth MAC-adres van het uitzendende apparaat, geschreven als 12 hoofdletter hexadecimale tekens zonder dubbele punten. A1:B2:C3:D4:E5:F6 wordt bijvoorbeeld A1B2C3D4E5F6. Dit helpt een ontvanger om precies op de juiste uitzender te vergrendelen in plaats van op een ander nabijgelegen apparaat met dezelfde naam.",
+          "optional": true
+        },
+        {
+          "field": "BI:<hex>",
+          "value": "1A2B3C",
+          "label": "Uitzend-ID",
+          "description": "Een unieke identificatie voor de uitzendstream, geschreven in hexadecimaal (1 tot 6 tekens). Dit wordt toegewezen door de uitzender en onderscheidt deze van andere Auracast-streams in hetzelfde gebied.",
+          "optional": false
+        },
+        {
+          "field": "SQ:1",
+          "value": "SQ:1",
+          "label": "Standaardkwaliteitsstream",
+          "description": "Alleen aanwezig als de uitzending een Standaardkwaliteit-audiostream bevat. Standaardkwaliteit gebruikt minder bandbreedte — nuttig voor spraak, aankondigingen of energiezuinige scenario's. Als deze stream niet beschikbaar is, wordt het veld volledig weggelaten.",
+          "optional": true
+        },
+        {
+          "field": "HQ:1",
+          "value": "HQ:1",
+          "label": "Hogekwaliteitsstream",
+          "description": "Alleen aanwezig als de uitzending een Hogekwaliteit-audiostream bevat. Hogekwaliteit levert rijker, voller geluid — beter geschikt voor muziek, entertainment of een premium luisterervaring. Zowel SQ:1 als HQ:1 kunnen samen voorkomen als de uitzender beide aanbiedt.",
+          "optional": true
+        },
+        {
+          "field": "BC:<base64>",
+          "value": "bXlrZXkAAAAAAAAAAAAAAA==",
+          "label": "Uitzendcode",
+          "description": "Alleen aanwezig bij versleutelde uitzendingen. Dit is de toegangscode die een luisteraar nodig heeft voor de audio, gecodeerd in Base64. De onbewerkte toegangscode wordt vooraf aangevuld tot precies 16 bytes, wat zorgt voor een consistente lengte. Zonder de juiste code kan een apparaat zien dat de uitzending bestaat, maar kan het de audio niet ontsleutelen.",
+          "optional": true
+        }
+      ]
+    },
+    "base64": {
+      "heading": "Waarom Base64?",
+      "p": "De Auracast URI-indeling gebruikt puntkomma's als scheidingstekens. Als een uitzendnaam een puntkomma bevatte, zou dit de structuur verstoren. Base64 lost dit op: het zet elke tekst — inclusief speciale tekens, emoji of niet-Engelse scripts — om in een string die alleen de 64 veilige tekens A–Z a–z 0–9 + / plus optionele =-opvulling gebruikt.",
+      "notice": "Let op hoe de geaccentueerde é in \"Café\" netjes wordt verwerkt — de Base64-uitvoer lijkt totaal niet op de invoer, maar decodeert elke keer perfect terug.",
+      "terminal": {
+        "heading": "Probeer het zelf in een terminal",
+        "macos": {
+          "title": "macOS — Terminal",
+          "encode": "Coderen",
+          "decode": "Decoderen"
+        },
+        "linux": {
+          "title": "Linux — Terminal",
+          "note": "De opdrachten zijn identiek aan macOS.",
+          "encode": "Coderen",
+          "decode": "Decoderen"
+        },
+        "windows": {
+          "title": "Windows — PowerShell",
+          "note": "Windows heeft geen ingebouwde base64-opdracht, maar PowerShell verwerkt dit native. De extra stap waarbij UTF-8 wordt opgegeven, zorgt ervoor dat geaccentueerde of niet-Engelse tekens correct worden gecodeerd.",
+          "encode": "Coderen",
+          "decode": "Decoderen"
+        },
+        "flagNote": "Op macOS en Linux is de vlag -n bij echo belangrijk — zonder deze vlag wordt een afsluitende regelafbreking meegenomen in de codering en zal het resultaat onjuist zijn."
+      }
+    },
+    "workedExample": {
+      "heading": "Een uitgewerkt voorbeeld",
+      "p": "Laten we de URI stap voor stap opbouwen voor deze uitzending:",
+      "tableLabels": {
+        "broadcastName": "Uitzendnaam",
+        "broadcastId": "Uitzend-ID",
+        "addressType": "Adrestype",
+        "advertiserAddress": "Adverteerderadres",
+        "quality": "Kwaliteit",
+        "encrypted": "Versleuteld"
+      },
+      "tableValues": {
+        "broadcastName": "\"Airport\"",
+        "broadcastId": "1A2B3C",
+        "addressType": "Openbaar (0)",
+        "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "quality": "Alleen hogekwaliteit",
+        "encrypted": "Nee"
+      },
+      "steps": [
+        {
+          "label": "Begin met de Auracast-service-identificatie",
+          "note": "Dit voorvoegsel is vast — het verandert nooit."
+        },
+        {
+          "label": "Voeg de uitzendnaam toe",
+          "note": "\"Airport\" → Base64-gecodeerd → QWlycG9ydA=="
+        },
+        {
+          "label": "Voeg het adrestype toe",
+          "note": "0 = openbaar adres"
+        },
+        {
+          "label": "Voeg het adverteerderadres toe",
+          "note": "Dubbele punten verwijderd, hoofdletters — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
+        },
+        {
+          "label": "Voeg het uitzend-ID toe",
+          "note": "De unieke hexadecimale identificatie voor deze stream"
+        },
+        {
+          "label": "Voeg de kwaliteitsvlag toe",
+          "note": "HQ:1 wordt toegevoegd omdat Hogekwaliteit is geselecteerd. SQ:1 wordt weggelaten."
+        },
+        {
+          "label": "Sluit af met een dubbele puntkomma",
+          "note": "De afsluitende ;; geeft het einde van de Auracast-URI aan."
+        }
+      ]
+    },
+    "completeUri": {
+      "heading": "De volledige URI",
+      "p": "Dit is de definitieve string die wordt ingebed in de QR-code. Elk compatibel Bluetooth-apparaat kan deze scannen en direct verbinding maken met de uitzending.",
+      "note": "De QR-code wordt gegenereerd vanuit deze string op het hoogst beschikbare foutcorrectieniveau, zodat de code scanbaar blijft zelfs als een deel ervan is bedekt of beschadigd."
+    },
+    "cta": {
+      "heading": "Probeer het zelf",
+      "subtext": "Vul uw uitzendgegevens in en zie hoe de URI in realtime wordt bijgewerkt.",
+      "button": "Open de generator"
+    },
+    "learnMore": {
+      "text": "Nieuw bij Auracast?",
+      "link": "Lees onze introductie →"
+    }
+  }
+}

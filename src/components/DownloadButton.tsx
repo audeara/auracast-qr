@@ -4,12 +4,16 @@ import { useState } from 'react';
 import QRCodeStyling, { Options } from 'qr-code-styling';
 import JSZip from 'jszip';
 import { StylingOptions } from '@/lib/styling';
+import type en from '@/dictionaries/en.json';
+
+type DownloadDict = typeof en.download;
 
 interface DownloadButtonProps {
   uri: string | null;
   broadcastName: string;
   centreImageUri: string | null;
   styling: StylingOptions;
+  dict: DownloadDict;
 }
 
 async function resolveToDataUri(uri: string | null): Promise<string | undefined> {
@@ -71,8 +75,19 @@ function toFileStem(broadcastName: string): string {
   return `auracast-qr-${broadcastName.toLowerCase().replace(/\s+/g, '-')}`;
 }
 
-export default function DownloadButton({ uri, broadcastName, centreImageUri, styling }: DownloadButtonProps) {
+export default function DownloadButton({ uri, broadcastName, centreImageUri, styling, dict }: DownloadButtonProps) {
   const [loading, setLoading] = useState(false);
+  const [copying, setCopying] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  async function buildPngBlob(): Promise<Blob> {
+    const embeddedImage = await resolveToDataUri(centreImageUri);
+    const opts = buildExportOptions(uri!, embeddedImage, styling, styling.exportSize);
+    const qrPng = new QRCodeStyling({ ...opts, type: 'canvas' });
+    const raw = await qrPng.getRawData('png');
+    if (!raw || !(raw instanceof Blob)) throw new Error('Failed to generate PNG');
+    return raw;
+  }
 
   async function handleDownload() {
     if (!uri) return;
@@ -109,32 +124,70 @@ export default function DownloadButton({ uri, broadcastName, centreImageUri, sty
     }
   }
 
-  const disabled = !uri || loading;
+  async function handleCopy() {
+    if (!uri) return;
+    setCopying(true);
+    try {
+      const blob = await buildPngBlob();
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } finally {
+      setCopying(false);
+    }
+  }
+
+  const disabled = !uri;
 
   return (
-    <button
-      type="button"
-      onClick={handleDownload}
-      disabled={disabled}
-      className={[
-        'w-full flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors',
-        disabled
-          ? 'bg-primary/20 text-primary/40 cursor-not-allowed'
-          : 'bg-primary text-white hover:bg-primary-active active:scale-[0.98]',
-      ].join(' ')}
-    >
-      {loading ? (
-        <>
+    <div className="flex gap-2">
+      <button
+        type="button"
+        onClick={handleDownload}
+        disabled={disabled || loading}
+        className={[
+          'flex-1 flex items-center justify-center gap-2 rounded-xl px-4 py-4 text-base font-semibold transition-colors',
+          disabled || loading
+            ? 'bg-primary/20 text-primary/40 cursor-not-allowed'
+            : 'bg-primary text-white hover:bg-primary-active active:scale-[0.98]',
+        ].join(' ')}
+      >
+        {loading ? (
+          <>
+            <Spinner />
+            {dict.generating}
+          </>
+        ) : (
+          <>
+            <DownloadIcon />
+            {dict.download}
+          </>
+        )}
+      </button>
+
+      <button
+        type="button"
+        onClick={handleCopy}
+        disabled={disabled || copying}
+        className={[
+          'flex items-center justify-center gap-1.5 rounded-xl px-4 py-4 text-sm font-semibold transition-colors whitespace-nowrap',
+          disabled || copying
+            ? 'bg-primary/10 text-primary/40 cursor-not-allowed'
+            : copied
+            ? 'bg-green-100 text-green-700'
+            : 'bg-primary-tint text-primary hover:bg-primary/10 active:scale-[0.98]',
+        ].join(' ')}
+      >
+        {copying ? (
           <Spinner />
-          Generating…
-        </>
-      ) : (
-        <>
-          <DownloadIcon />
-          Download ZIP
-        </>
-      )}
-    </button>
+        ) : copied ? (
+          <CheckIcon />
+        ) : (
+          <CopyIcon />
+        )}
+        {copied ? dict.copied : dict.copy}
+      </button>
+    </div>
   );
 }
 
@@ -143,6 +196,23 @@ function DownloadIcon() {
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M3 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function CopyIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

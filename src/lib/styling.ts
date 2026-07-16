@@ -18,7 +18,7 @@ export type StylingOptions = {
 };
 
 export const DEFAULT_STYLING: StylingOptions = {
-  fgColor: '#188383',
+  fgColor: '#000000',
   bgColor: '#FFFFFF',
   dotType: 'square',
   cornerSquareType: 'square',

@@ -41,8 +41,8 @@ describe('formSchema — BI (Broadcast ID)', () => {
     expect(formSchema.safeParse({ ...base, BI: '1a2b3c' }).success).toBe(true);
   });
 
-  it('rejects empty string', () => {
-    expect(formSchema.safeParse({ ...base, BI: '' }).success).toBe(false);
+  it('accepts empty string', () => {
+    expect(formSchema.safeParse({ ...base, BI: '' }).success).toBe(true);
   });
 
   it('rejects more than 6 hex characters', () => {

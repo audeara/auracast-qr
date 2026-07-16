@@ -5,7 +5,11 @@ export const formSchema = z
     BN: z.string().min(4, 'Minimum 4 characters').max(32, 'Maximum 32 characters'),
     BI: z
       .string()
-      .regex(/^[0-9A-Fa-f]{1,6}$/, 'Must be 1–6 hex characters'),
+      .refine(
+        (val) => !val || /^[0-9A-Fa-f]{1,6}$/.test(val),
+        { message: 'Must be 1–6 hex characters' }
+      )
+      .default(''),
     AD: z
       .string()
       .refine(

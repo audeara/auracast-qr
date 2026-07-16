@@ -1,0 +1,358 @@
+{
+  "header": {
+    "title": "Auracast QR Generator",
+    "nav": {
+      "whatIsAuracast": "What is Auracast?",
+      "howCodesWork": "How codes work"
+    }
+  },
+  "footer": {
+    "poweredBy": "Powered by Audeara"
+  },
+  "home": {
+    "heading": "Configure your Auracast broadcast"
+  },
+  "form": {
+    "broadcastName": {
+      "label": "Broadcast Name",
+      "placeholder": "e.g. Main Hall Audio"
+    },
+    "broadcastId": {
+      "label": "Broadcast ID",
+      "placeholder": "e.g. 1A2B",
+      "tooltip": "A short code that uniquely identifies this broadcast. Your AV technician will find it in the broadcast equipment's settings. It uses only numbers and the letters A–F (for example: 1A2B or FF003C). It can be 1–6 characters long."
+    },
+    "deviceAddress": {
+      "label": "Device Address",
+      "hint": "Optional — 12 hex characters",
+      "placeholder": "AA:BB:CC:00:11:22",
+      "tooltip": "The Bluetooth hardware address of your broadcast transmitter — similar to a serial number for the device. Your AV technician can find it in the device's settings menu or on a sticker on the equipment itself. It looks like AA:BB:CC:00:11:22. You can leave this blank if you're unsure."
+    },
+    "addressType": {
+      "label": "Address Type",
+      "tooltip": "Describes how your broadcast device identifies itself over Bluetooth. 'Public' means it uses a fixed, permanent address — the most common setting for venue equipment. 'Random' means the address changes periodically for privacy. If in doubt, choose Public or ask your AV technician.",
+      "public": "Public",
+      "random": "Random"
+    },
+    "audioQuality": {
+      "label": "Audio Quality",
+      "tooltip": "Indicates the audio quality levels your broadcast supports. 'Standard' (SQ) works on most Auracast-compatible devices. 'High' (HQ) delivers better audio but requires newer receivers. Choose 'Both' if your equipment transmits both quality levels simultaneously. Check your broadcast equipment's documentation if you're unsure — or ask your AV technician.",
+      "none": "None",
+      "standard": "Standard",
+      "high": "High",
+      "both": "Both"
+    },
+    "encrypted": {
+      "label": "Encrypted broadcast",
+      "tooltip": "Tick this if your broadcast is password-protected. Encrypted broadcasts require listeners to enter a code before they can tune in. The code is set on your broadcast equipment — ask your AV technician for it before enabling this option."
+    },
+    "broadcastCode": {
+      "label": "Broadcast Code",
+      "hint": "Max 16 characters",
+      "placeholder": "Enter broadcast code",
+      "tooltip": "The password listeners need to access your encrypted broadcast. This code is configured on your broadcast equipment — your AV technician will be able to provide it. It can be up to 16 characters long."
+    },
+    "advanced": "Advanced"
+  },
+  "preview": {
+    "title": "QR Preview",
+    "generatedUri": "Generated URI",
+    "placeholder": "Enter a Broadcast Name (min 4 chars) to see your QR code"
+  },
+  "download": {
+    "download": "Download ZIP",
+    "generating": "Generating…",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "centreImage": {
+    "label": "Image",
+    "auracastLogo": "Auracast Logo",
+    "none": "None",
+    "custom": "Custom",
+    "replace": "Replace image…",
+    "upload": "Upload image…",
+    "warning": "Custom images are not included in the shareable URL — collaborators will need to re-upload."
+  },
+  "styling": {
+    "title": "QR Style",
+    "dotStyle": "Dot Style",
+    "cornerStyle": "Corner Style",
+    "colours": "Colours",
+    "gradientFill": "Gradient fill",
+    "start": "Start",
+    "end": "End",
+    "foreground": "Foreground",
+    "background": "Background",
+    "errorCorrection": "Error correction",
+    "exportSize": "Export size"
+  },
+  "whatIsAuracast": {
+    "meta": {
+      "title": "What is Auracast? Bluetooth Broadcast Audio Explained",
+      "description": "Learn how Auracast Bluetooth broadcast audio works — who it helps, where it's deployed, and why it's transforming hearing accessibility in public spaces."
+    },
+    "hero": {
+      "heading": "What is Auracast?",
+      "p1": "Auracast is a Bluetooth broadcast audio standard developed by the Bluetooth Special Interest Group (SIG). It lets a single device — a TV, PA system, or dedicated transmitter — stream audio to an unlimited number of nearby listeners simultaneously, without any pairing or setup required on the listener’s end.",
+      "p2": "Think of it like a local radio station, but delivered over Bluetooth. Anyone with a compatible device can tune in just by being within range."
+    },
+    "difference": {
+      "heading": "How is it different from regular Bluetooth?",
+      "p": "Standard Bluetooth is designed for private, one-to-one connections — your phone to your earbuds, for example. Each connection is exclusive and paired. Auracast works the opposite way: it broadcasts audio outward like a public signal, and any number of compatible devices can receive it at the same time.",
+      "classicTitle": "Classic Bluetooth",
+      "classicBullets": [
+        "One device to one device",
+        "Requires pairing",
+        "Private connection"
+      ],
+      "auracastTitle": "Auracast",
+      "auracastBullets": [
+        "One device to unlimited listeners",
+        "No pairing needed",
+        "Open broadcast"
+      ]
+    },
+    "who": {
+      "heading": "Who does Auracast help?",
+      "p": "Auracast was built with accessibility at its core. While anyone can use it, it has the most transformative impact for people who rely on hearing technology.",
+      "cards": [
+        {
+          "icon": "🦵",
+          "heading": "Hearing aid and cochlear implant users",
+          "body": "Modern hearing aids and cochlear implants are increasingly Bluetooth LE Audio compatible. Auracast lets them stream crystal-clear audio directly from a venue’s sound system — cutting out background noise entirely."
+        },
+        {
+          "icon": "🔊",
+          "heading": "Anyone in a noisy environment",
+          "body": "Crowded airports, busy stations, or echoing halls are hard for everyone. Auracast delivers audio straight to the listener, bypassing the acoustic chaos of the room."
+        },
+        {
+          "icon": "🌍",
+          "heading": "Multilingual audiences",
+          "body": "A single room can broadcast on multiple Auracast channels simultaneously — one per language. Attendees select their preferred stream without any physical equipment handout."
+        }
+      ]
+    },
+    "where": {
+      "heading": "Where is Auracast being used?",
+      "p": "Auracast is designed for any public space where audio matters. Early deployments are appearing in:",
+      "venues": [
+        {
+          "icon": "✈️",
+          "heading": "Airports & transport hubs",
+          "desc": "Gate announcements streamed directly to passengers"
+        },
+        {
+          "icon": "🎭",
+          "heading": "Theatres & cinemas",
+          "desc": "Crystal-clear dialogue without a hearing loop receiver"
+        },
+        {
+          "icon": "🏛️",
+          "heading": "Places of worship",
+          "desc": "Sermons and music delivered to every seat"
+        },
+        {
+          "icon": "🏟️",
+          "heading": "Conference & event venues",
+          "desc": "Simultaneous translation and accessible audio"
+        },
+        {
+          "icon": "🏥",
+          "heading": "Hospitals & waiting areas",
+          "desc": "TV audio without disturbing others"
+        },
+        {
+          "icon": "🚌",
+          "heading": "Public transport",
+          "desc": "Real-time travel information and announcements"
+        }
+      ]
+    },
+    "qrCodes": {
+      "heading": "How do QR codes fit in?",
+      "p1": "Finding the right Auracast broadcast in a busy venue can be tricky — just like picking the right Wi-Fi network from a long list. An Auracast QR code solves this instantly.",
+      "p2": "A compatible device scans the code and connects directly to the correct broadcast — no scrolling, no guessing. The QR code encodes the broadcast’s name, its Bluetooth identifier, and optionally a security passcode for encrypted streams.",
+      "p3": "Venues print these codes on seats, walls, programmes, or screens — the same way you’d display a Wi-Fi QR code."
+    },
+    "cta": {
+      "heading": "Ready to create a code?",
+      "subtext": "Generate a SIG-compliant Auracast QR code in seconds.",
+      "button": "Open the generator"
+    },
+    "learnMore": {
+      "text": "Want to understand exactly how the QR code string is constructed?",
+      "link": "Read how codes are generated →"
+    }
+  },
+  "howCodesAreGenerated": {
+    "meta": {
+      "title": "How Auracast QR Codes Work — URI Format Explained",
+      "description": "A plain-English guide to the Bluetooth URI inside every Auracast QR code — field by field, with worked examples and terminal commands for Base64 encoding."
+    },
+    "hero": {
+      "heading": "How Auracast QR codes are generated",
+      "p": "Every Auracast QR code contains a specially formatted text string — a Bluetooth URI. This page walks through exactly what that string contains and how it is built, field by field."
+    },
+    "atAGlance": {
+      "heading": "The URI at a glance",
+      "p": "The string follows the Bluetooth SIG Auracast specification. Here is a complete example for a broadcast called “Airport” with a public Bluetooth address and a High Quality stream:",
+      "note": "Each piece of information is separated by a semicolon. The string always ends with a double semicolon."
+    },
+    "fields": {
+      "heading": "What each field means",
+      "optional": "optional",
+      "exampleValue": "Example value:",
+      "rows": [
+        {
+          "field": "UUID:184F",
+          "value": "184F",
+          "label": "Auracast service identifier",
+          "description": "This never changes. 184F is the Bluetooth SIG-assigned UUID for Public Broadcast Audio — it tells any scanning device that this QR code is for an Auracast broadcast, not a regular Bluetooth device.",
+          "optional": false
+        },
+        {
+          "field": "BN:<base64>",
+          "value": "QWlycG9ydA==",
+          "label": "Broadcast Name",
+          "description": "The human-readable name of the broadcast, encoded in Base64. Base64 converts text into a safe sequence of printable characters so that any name — including accented letters or non-English characters — survives intact inside the URI. For example, the name “Airport” becomes QWlycG9ydA==. The == at the end is standard Base64 padding.",
+          "optional": false
+        },
+        {
+          "field": "AT:<0 or 1>",
+          "value": "0",
+          "label": "Address Type",
+          "description": "Describes the kind of Bluetooth address the broadcaster is using. 0 means a public (permanent) address — the same every time. 1 means a random address, which some devices rotate for privacy. Only included in the URI when an Advertiser Address is also provided.",
+          "optional": true
+        },
+        {
+          "field": "AD:<12 hex chars>",
+          "value": "A1B2C3D4E5F6",
+          "label": "Advertiser Address",
+          "description": "The Bluetooth MAC address of the broadcasting device, written as 12 uppercase hexadecimal characters with no colons. For example, A1:B2:C3:D4:E5:F6 becomes A1B2C3D4E5F6. Including this helps a receiver lock onto the exact broadcaster rather than any nearby device with the same name.",
+          "optional": true
+        },
+        {
+          "field": "BI:<hex>",
+          "value": "1A2B3C",
+          "label": "Broadcast ID",
+          "description": "A unique identifier for the broadcast stream, written in hexadecimal (1 to 6 characters). This is assigned by the broadcaster and distinguishes it from other Auracast streams in the same area.",
+          "optional": true,
+          "note": "Note: while the Broadcast ID is technically required by the Auracast specification, many real-world implementations omit it without issue. Most transmitters run only a single broadcast at a time, so receiver devices can identify the stream without an explicit ID — and popular platforms such as Google Pixel handle its absence gracefully. In practice, you'll frequently encounter working Auracast deployments where this field is not present."
+        },
+        {
+          "field": "SQ:1",
+          "value": "SQ:1",
+          "label": "Standard Quality stream",
+          "description": "Present only when the broadcast includes a Standard Quality audio stream. Standard Quality uses less bandwidth — useful for speech, announcements, or lower-power scenarios. If this stream is not available, the field is omitted entirely.",
+          "optional": true
+        },
+        {
+          "field": "HQ:1",
+          "value": "HQ:1",
+          "label": "High Quality stream",
+          "description": "Present only when the broadcast includes a High Quality audio stream. High Quality delivers richer, fuller sound — better for music, entertainment, or premium listening experiences. Both SQ:1 and HQ:1 can appear together if the broadcaster offers both.",
+          "optional": true
+        },
+        {
+          "field": "BC:<base64>",
+          "value": "bXlrZXkAAAAAAAAAAAAAAA==",
+          "label": "Broadcast Code",
+          "description": "Only present for encrypted broadcasts. This is the passcode a listener needs to access the audio, encoded in Base64. The raw passcode is padded to exactly 16 bytes before encoding, ensuring a consistent length. Without the correct code, a device can see the broadcast exists but cannot decrypt the audio.",
+          "optional": true
+        }
+      ]
+    },
+    "base64": {
+      "heading": "Why Base64?",
+      "p": "The Auracast URI format uses semicolons as separators. If a broadcast name contained a semicolon, it would break the structure. Base64 solves this: it converts any text — including special characters, emoji, or non-English scripts — into a string that only uses the 64 safe characters A–Z a–z 0–9 + / plus optional = padding.",
+      "notice": "Notice how the accented é in “Café” is handled cleanly — the Base64 output looks nothing like the input, but it decodes back perfectly every time.",
+      "terminal": {
+        "heading": "Try it yourself in a terminal",
+        "macos": {
+          "title": "macOS — Terminal",
+          "encode": "Encode",
+          "decode": "Decode"
+        },
+        "linux": {
+          "title": "Linux — Terminal",
+          "note": "The commands are identical to macOS.",
+          "encode": "Encode",
+          "decode": "Decode"
+        },
+        "windows": {
+          "title": "Windows — PowerShell",
+          "note": "Windows doesn’t have a built-in base64 command, but PowerShell handles it natively. The extra step specifying UTF-8 ensures accented or non-English characters encode correctly.",
+          "encode": "Encode",
+          "decode": "Decode"
+        },
+        "flagNote": "On macOS and Linux, the -n flag on echo is important — without it a trailing newline gets included in the encoding and the result will be wrong."
+      }
+    },
+    "workedExample": {
+      "heading": "A worked example",
+      "p": "Let’s build the URI step by step for this broadcast:",
+      "tableLabels": {
+        "broadcastName": "Broadcast Name",
+        "broadcastId": "Broadcast ID",
+        "addressType": "Address Type",
+        "advertiserAddress": "Advertiser Address",
+        "quality": "Quality",
+        "encrypted": "Encrypted"
+      },
+      "tableValues": {
+        "broadcastName": "\"Airport\"",
+        "broadcastId": "1A2B3C",
+        "addressType": "Public (0)",
+        "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "quality": "High Quality only",
+        "encrypted": "No"
+      },
+      "steps": [
+        {
+          "label": "Start with the Auracast service identifier",
+          "note": "This prefix is fixed — it never changes."
+        },
+        {
+          "label": "Append the Broadcast Name",
+          "note": "“Airport” → Base64 encoded → QWlycG9ydA=="
+        },
+        {
+          "label": "Append the Address Type",
+          "note": "0 = public address"
+        },
+        {
+          "label": "Append the Advertiser Address",
+          "note": "Colons removed, uppercase — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
+        },
+        {
+          "label": "Append the Broadcast ID",
+          "note": "The unique hex identifier for this stream"
+        },
+        {
+          "label": "Append the quality flag",
+          "note": "HQ:1 is added because High Quality is selected. SQ:1 is omitted."
+        },
+        {
+          "label": "Close with a double semicolon",
+          "note": "The trailing ;; signals the end of the Auracast URI."
+        }
+      ]
+    },
+    "completeUri": {
+      "heading": "The complete URI",
+      "p": "This is the final string that gets embedded into the QR code. Any compatible Bluetooth device can scan it and connect directly to the broadcast.",
+      "note": "The QR code is generated from this string at the highest error-correction level available, so the code remains scannable even if part of it is obscured or damaged."
+    },
+    "cta": {
+      "heading": "Try it yourself",
+      "subtext": "Fill in your broadcast details and watch the URI update in real time.",
+      "button": "Open the generator"
+    },
+    "learnMore": {
+      "text": "New to Auracast?",
+      "link": "Read our introduction →"
+    }
+  }
+}

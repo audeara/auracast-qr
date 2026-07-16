@@ -1,6 +1,9 @@
 'use client';
 
 import { useRef } from 'react';
+import type en from '@/dictionaries/en.json';
+
+type CentreImageDict = typeof en.centreImage;
 
 export type CentreImageType = 'logo' | 'none' | 'custom';
 
@@ -8,16 +11,17 @@ interface CentreImagePickerProps {
   value: CentreImageType;
   hasCustomImage: boolean;
   onChange: (type: CentreImageType, dataUri?: string) => void;
+  dict: CentreImageDict;
 }
 
-const OPTIONS: { value: CentreImageType; label: string }[] = [
-  { value: 'logo', label: 'Auracast Logo' },
-  { value: 'none', label: 'None' },
-  { value: 'custom', label: 'Custom' },
-];
-
-export default function CentreImagePicker({ value, hasCustomImage, onChange }: CentreImagePickerProps) {
+export default function CentreImagePicker({ value, hasCustomImage, onChange, dict }: CentreImagePickerProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const OPTIONS: { value: CentreImageType; label: string }[] = [
+    { value: 'logo', label: dict.auracastLogo },
+    { value: 'none', label: dict.none },
+    { value: 'custom', label: dict.custom },
+  ];
 
   function handleTypeClick(type: CentreImageType) {
     onChange(type);
@@ -35,13 +39,12 @@ export default function CentreImagePicker({ value, hasCustomImage, onChange }: C
       onChange('custom', dataUri);
     };
     reader.readAsDataURL(file);
-    // Reset input so the same file can be re-selected
     e.target.value = '';
   }
 
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-body-text">Centre Image</label>
+    <div className="space-y-3">
+      <label className="block text-sm font-semibold text-body-text">{dict.label}</label>
       <div className="flex gap-2">
         {OPTIONS.map((opt) => (
           <button
@@ -49,10 +52,10 @@ export default function CentreImagePicker({ value, hasCustomImage, onChange }: C
             type="button"
             onClick={() => handleTypeClick(opt.value)}
             className={[
-              'flex-1 text-center text-sm font-medium py-2 rounded-lg border cursor-pointer transition-colors',
+              'flex-1 text-center text-base font-medium py-3 rounded-xl border-2 cursor-pointer transition-colors',
               value === opt.value
                 ? 'bg-primary text-white border-primary'
-                : 'bg-white text-body-text border-primary-tint hover:border-primary/40',
+                : 'bg-surface text-body-text border-primary hover:bg-primary/5',
             ].join(' ')}
           >
             {opt.label}
@@ -72,12 +75,12 @@ export default function CentreImagePicker({ value, hasCustomImage, onChange }: C
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="w-full text-sm py-2 px-3 rounded-lg border-2 border-dashed border-primary-tint text-body-text/60 hover:border-primary/40 hover:text-body-text/80 transition-colors"
+            className="w-full text-base py-3 px-4 rounded-xl border-2 border-dashed border-body-text/25 text-body-text/60 hover:border-body-text/40 hover:text-body-text/80 transition-colors"
           >
-            {hasCustomImage ? 'Replace image…' : 'Upload image…'}
+            {hasCustomImage ? dict.replace : dict.upload}
           </button>
-          <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 leading-snug">
-            Custom images are not included in the shareable URL — collaborators will need to re-upload.
+          <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 leading-snug">
+            {dict.warning}
           </p>
         </>
       )}

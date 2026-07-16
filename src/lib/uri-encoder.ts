@@ -31,7 +31,9 @@ export function encodeUri(values: FormValues): string {
     segments.push(`AD:${ad}`);
   }
 
-  segments.push(`BI:${values.BI.toUpperCase()}`);
+  if (values.BI) {
+    segments.push(`BI:${values.BI.toUpperCase()}`);
+  }
 
   if (values.quality === 'sq' || values.quality === 'both') {
     segments.push('SQ:1');

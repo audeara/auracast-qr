@@ -1,0 +1,357 @@
+{
+  "header": {
+    "title": "Generador de QR Auracast",
+    "nav": {
+      "whatIsAuracast": "¿Qué es Auracast?",
+      "howCodesWork": "Cómo funcionan los códigos"
+    }
+  },
+  "footer": {
+    "poweredBy": "Desarrollado por Audeara"
+  },
+  "home": {
+    "heading": "Configure su transmisión Auracast"
+  },
+  "form": {
+    "broadcastName": {
+      "label": "Nombre de la transmisión",
+      "placeholder": "p. ej. Audio Sala Principal"
+    },
+    "broadcastId": {
+      "label": "ID de transmisión",
+      "placeholder": "p. ej. 1A2B",
+      "tooltip": "Un código corto que identifica de forma única esta transmisión. Su técnico AV lo encontrará en la configuración del equipo de transmisión. Solo utiliza números y las letras A–F (por ejemplo: 1A2B o FF003C). Puede tener entre 1 y 6 caracteres."
+    },
+    "deviceAddress": {
+      "label": "Dirección del dispositivo",
+      "hint": "Opcional — 12 caracteres hexadecimales",
+      "placeholder": "AA:BB:CC:00:11:22",
+      "tooltip": "La dirección de hardware Bluetooth del transmisor de su transmisión — similar al número de serie del dispositivo. Su técnico AV puede encontrarla en el menú de configuración del dispositivo o en una etiqueta del equipo. Tiene el formato AA:BB:CC:00:11:22. Puede dejarlo en blanco si no está seguro."
+    },
+    "addressType": {
+      "label": "Tipo de dirección",
+      "tooltip": "Describe cómo se identifica el dispositivo de transmisión en Bluetooth. 'Pública' significa que utiliza una dirección fija y permanente — la configuración más habitual en equipos de sala. 'Aleatoria' significa que la dirección cambia periódicamente por privacidad. En caso de duda, elija Pública o consulte a su técnico AV.",
+      "public": "Pública",
+      "random": "Aleatoria"
+    },
+    "audioQuality": {
+      "label": "Calidad de audio",
+      "tooltip": "Indica los niveles de calidad de audio que admite su transmisión. 'Estándar' (SQ) funciona en la mayoría de dispositivos compatibles con Auracast. 'Alta' (HQ) ofrece mejor audio pero requiere receptores más recientes. Elija 'Ambas' si su equipo transmite ambos niveles de calidad simultáneamente. Consulte la documentación del equipo de transmisión si no está seguro, o pregunte a su técnico AV.",
+      "none": "Ninguna",
+      "standard": "Estándar",
+      "high": "Alta",
+      "both": "Ambas"
+    },
+    "encrypted": {
+      "label": "Transmisión cifrada",
+      "tooltip": "Marque esta opción si su transmisión está protegida con contraseña. Las transmisiones cifradas requieren que los oyentes introduzcan un código antes de poder sintonizarlas. El código se configura en el equipo de transmisión — consulte a su técnico AV antes de habilitar esta opción."
+    },
+    "broadcastCode": {
+      "label": "Código de transmisión",
+      "hint": "Máx. 16 caracteres",
+      "placeholder": "Introduzca el código de transmisión",
+      "tooltip": "La contraseña que necesitan los oyentes para acceder a su transmisión cifrada. Este código se configura en el equipo de transmisión — su técnico AV podrá proporcionárselo. Puede tener hasta 16 caracteres."
+    },
+    "advanced": "Avanzado"
+  },
+  "preview": {
+    "title": "Vista previa del QR",
+    "generatedUri": "URI generada",
+    "placeholder": "Introduzca un nombre de transmisión (mín. 4 caracteres) para ver su código QR"
+  },
+  "download": {
+    "download": "Descargar ZIP",
+    "generating": "Generando…",
+    "copy": "Copiar",
+    "copied": "¡Copiado!"
+  },
+  "centreImage": {
+    "label": "Imagen central",
+    "auracastLogo": "Logotipo Auracast",
+    "none": "Ninguna",
+    "custom": "Personalizada",
+    "replace": "Reemplazar imagen…",
+    "upload": "Subir imagen…",
+    "warning": "Las imágenes personalizadas no se incluyen en la URL compartible — los colaboradores deberán subirlas de nuevo."
+  },
+  "styling": {
+    "title": "Opciones de estilo del QR",
+    "dotStyle": "Estilo de puntos",
+    "cornerStyle": "Estilo de esquinas",
+    "colours": "Colores",
+    "gradientFill": "Relleno degradado",
+    "start": "Inicio",
+    "end": "Fin",
+    "foreground": "Primer plano",
+    "background": "Fondo",
+    "errorCorrection": "Corrección de errores",
+    "exportSize": "Tamaño de exportación"
+  },
+  "whatIsAuracast": {
+    "meta": {
+      "title": "¿Qué es Auracast? Audio Bluetooth por difusión explicado",
+      "description": "Descubra cómo funciona el audio de difusión Bluetooth Auracast — a quién ayuda, dónde se implementa y por qué está transformando la accesibilidad auditiva en espacios públicos."
+    },
+    "hero": {
+      "heading": "¿Qué es Auracast?",
+      "p1": "Auracast es un estándar de audio Bluetooth por difusión desarrollado por el Bluetooth Special Interest Group (SIG). Permite que un único dispositivo — un televisor, un sistema de megafonía o un transmisor dedicado — transmita audio a un número ilimitado de oyentes cercanos de forma simultánea, sin necesidad de emparejamiento ni configuración por parte del oyente.",
+      "p2": "Piense en ello como una emisora de radio local, pero transmitida por Bluetooth. Cualquier persona con un dispositivo compatible puede sintonizarla con solo estar al alcance."
+    },
+    "difference": {
+      "heading": "¿En qué se diferencia del Bluetooth convencional?",
+      "p": "El Bluetooth estándar está diseñado para conexiones privadas punto a punto — por ejemplo, su teléfono con sus auriculares. Cada conexión es exclusiva y requiere emparejamiento. Auracast funciona de manera opuesta: difunde audio como una señal pública, y cualquier número de dispositivos compatibles puede recibirla al mismo tiempo.",
+      "classicTitle": "Bluetooth clásico",
+      "classicBullets": [
+        "Un dispositivo a un dispositivo",
+        "Requiere emparejamiento",
+        "Conexión privada"
+      ],
+      "auracastTitle": "Auracast",
+      "auracastBullets": [
+        "Un dispositivo para oyentes ilimitados",
+        "Sin emparejamiento",
+        "Difusión abierta"
+      ]
+    },
+    "who": {
+      "heading": "¿A quién beneficia Auracast?",
+      "p": "Auracast fue diseñado con la accesibilidad como eje central. Aunque cualquiera puede utilizarlo, su impacto más transformador es para las personas que dependen de tecnología auditiva.",
+      "cards": [
+        {
+          "icon": "🦵",
+          "heading": "Usuarios de audífonos e implantes cocleares",
+          "body": "Los audífonos e implantes cocleares modernos son cada vez más compatibles con Bluetooth LE Audio. Auracast les permite recibir audio nítido directamente del sistema de sonido de la sala, eliminando por completo el ruido de fondo."
+        },
+        {
+          "icon": "🔊",
+          "heading": "Cualquiera en un entorno ruidoso",
+          "body": "Los aeropuertos concurridos, las estaciones con mucho tráfico o las salas con eco son difíciles para todos. Auracast lleva el audio directamente al oyente, evitando el caos acústico del entorno."
+        },
+        {
+          "icon": "🌍",
+          "heading": "Audiencias multilingües",
+          "body": "Una misma sala puede emitir en varios canales Auracast simultáneamente — uno por idioma. Los asistentes seleccionan su transmisión preferida sin necesidad de repartir equipos físicos."
+        }
+      ]
+    },
+    "where": {
+      "heading": "¿Dónde se utiliza Auracast?",
+      "p": "Auracast está diseñado para cualquier espacio público donde el audio sea importante. Las primeras implementaciones están apareciendo en:",
+      "venues": [
+        {
+          "icon": "✈️",
+          "heading": "Aeropuertos y centros de transporte",
+          "desc": "Anuncios de puertas de embarque transmitidos directamente a los pasajeros"
+        },
+        {
+          "icon": "🎭",
+          "heading": "Teatros y cines",
+          "desc": "Diálogos nítidos sin necesidad de receptor de bucle auditivo"
+        },
+        {
+          "icon": "🏛️",
+          "heading": "Lugares de culto",
+          "desc": "Sermones y música entregados a cada asiento"
+        },
+        {
+          "icon": "🏟️",
+          "heading": "Salas de conferencias y eventos",
+          "desc": "Traducción simultánea y audio accesible"
+        },
+        {
+          "icon": "🏥",
+          "heading": "Hospitales y salas de espera",
+          "desc": "Audio de televisión sin molestar a los demás"
+        },
+        {
+          "icon": "🚌",
+          "heading": "Transporte público",
+          "desc": "Información de viaje en tiempo real y anuncios"
+        }
+      ]
+    },
+    "qrCodes": {
+      "heading": "¿Qué papel juegan los códigos QR?",
+      "p1": "Encontrar la transmisión Auracast correcta en una sala concurrida puede ser complicado — igual que elegir la red Wi-Fi adecuada entre una lista larga. Un código QR de Auracast resuelve esto al instante.",
+      "p2": "Un dispositivo compatible escanea el código y se conecta directamente a la transmisión correcta — sin desplazarse por menús ni adivinar. El código QR contiene el nombre de la transmisión, su identificador Bluetooth y, opcionalmente, una contraseña de acceso para transmisiones cifradas.",
+      "p3": "Las salas imprimen estos códigos en asientos, paredes, programas o pantallas — del mismo modo que se muestra un código QR de Wi-Fi."
+    },
+    "cta": {
+      "heading": "¿Listo para crear un código?",
+      "subtext": "Genere un código QR Auracast conforme al estándar SIG en segundos.",
+      "button": "Abrir el generador"
+    },
+    "learnMore": {
+      "text": "¿Quiere entender exactamente cómo se construye la cadena del código QR?",
+      "link": "Lea cómo se generan los códigos →"
+    }
+  },
+  "howCodesAreGenerated": {
+    "meta": {
+      "title": "Cómo funcionan los códigos QR de Auracast — Formato URI explicado",
+      "description": "Una guía en lenguaje sencillo sobre el URI Bluetooth dentro de cada código QR Auracast — campo a campo, con ejemplos prácticos y comandos de terminal para codificación Base64."
+    },
+    "hero": {
+      "heading": "Cómo se generan los códigos QR de Auracast",
+      "p": "Cada código QR de Auracast contiene una cadena de texto con formato especial — un URI Bluetooth. Esta página explica exactamente qué contiene esa cadena y cómo se construye, campo a campo."
+    },
+    "atAGlance": {
+      "heading": "El URI de un vistazo",
+      "p": "La cadena sigue la especificación Auracast del Bluetooth SIG. A continuación se muestra un ejemplo completo para una transmisión llamada \"Airport\" con una dirección Bluetooth pública y una transmisión de Alta Calidad:",
+      "note": "Cada dato está separado por un punto y coma. La cadena siempre termina con un doble punto y coma."
+    },
+    "fields": {
+      "heading": "Qué significa cada campo",
+      "optional": "opcional",
+      "exampleValue": "Valor de ejemplo:",
+      "rows": [
+        {
+          "field": "UUID:184F",
+          "value": "184F",
+          "label": "Identificador de servicio Auracast",
+          "description": "Este valor nunca cambia. 184F es el UUID asignado por el Bluetooth SIG para Public Broadcast Audio — indica a cualquier dispositivo que escanee el código que este código QR corresponde a una transmisión Auracast y no a un dispositivo Bluetooth convencional.",
+          "optional": false
+        },
+        {
+          "field": "BN:<base64>",
+          "value": "QWlycG9ydA==",
+          "label": "Nombre de la transmisión",
+          "description": "El nombre legible de la transmisión, codificado en Base64. Base64 convierte el texto en una secuencia segura de caracteres imprimibles para que cualquier nombre — incluyendo letras acentuadas o caracteres no ingleses — se conserve intacto dentro del URI. Por ejemplo, el nombre \"Airport\" se convierte en QWlycG9ydA==. El == al final es el relleno estándar de Base64.",
+          "optional": false
+        },
+        {
+          "field": "AT:<0 or 1>",
+          "value": "0",
+          "label": "Tipo de dirección",
+          "description": "Describe el tipo de dirección Bluetooth que utiliza el emisor. 0 significa una dirección pública (permanente) — siempre la misma. 1 significa una dirección aleatoria, que algunos dispositivos rotan por privacidad. Solo se incluye en el URI cuando también se proporciona una dirección de anunciante.",
+          "optional": true
+        },
+        {
+          "field": "AD:<12 hex chars>",
+          "value": "A1B2C3D4E5F6",
+          "label": "Dirección del anunciante",
+          "description": "La dirección MAC Bluetooth del dispositivo emisor, escrita como 12 caracteres hexadecimales en mayúsculas sin dos puntos. Por ejemplo, A1:B2:C3:D4:E5:F6 se convierte en A1B2C3D4E5F6. Incluir esta dirección ayuda al receptor a conectarse exactamente al emisor correcto en lugar de a cualquier dispositivo cercano con el mismo nombre.",
+          "optional": true
+        },
+        {
+          "field": "BI:<hex>",
+          "value": "1A2B3C",
+          "label": "ID de transmisión",
+          "description": "Un identificador único para la transmisión, escrito en hexadecimal (de 1 a 6 caracteres). Es asignado por el emisor y la distingue de otras transmisiones Auracast en la misma área.",
+          "optional": false
+        },
+        {
+          "field": "SQ:1",
+          "value": "SQ:1",
+          "label": "Transmisión de calidad estándar",
+          "description": "Solo está presente cuando la transmisión incluye un flujo de audio de Calidad Estándar. La Calidad Estándar utiliza menos ancho de banda — útil para voz, anuncios o escenarios de bajo consumo. Si este flujo no está disponible, el campo se omite por completo.",
+          "optional": true
+        },
+        {
+          "field": "HQ:1",
+          "value": "HQ:1",
+          "label": "Transmisión de alta calidad",
+          "description": "Solo está presente cuando la transmisión incluye un flujo de audio de Alta Calidad. La Alta Calidad ofrece un sonido más rico y completo — mejor para música, entretenimiento o experiencias de escucha premium. Tanto SQ:1 como HQ:1 pueden aparecer juntos si el emisor ofrece ambos.",
+          "optional": true
+        },
+        {
+          "field": "BC:<base64>",
+          "value": "bXlrZXkAAAAAAAAAAAAAAA==",
+          "label": "Código de transmisión",
+          "description": "Solo está presente en transmisiones cifradas. Es la contraseña que necesita un oyente para acceder al audio, codificada en Base64. La contraseña original se rellena hasta exactamente 16 bytes antes de codificarse, garantizando una longitud uniforme. Sin el código correcto, un dispositivo puede ver que la transmisión existe pero no puede descifrar el audio.",
+          "optional": true
+        }
+      ]
+    },
+    "base64": {
+      "heading": "¿Por qué Base64?",
+      "p": "El formato URI de Auracast utiliza puntos y coma como separadores. Si el nombre de una transmisión contuviera un punto y coma, rompería la estructura. Base64 resuelve esto: convierte cualquier texto — incluyendo caracteres especiales, emojis o escrituras no latinas — en una cadena que solo usa los 64 caracteres seguros A–Z a–z 0–9 + / más el relleno opcional =.",
+      "notice": "Observe cómo la é acentuada de \"Café\" se maneja correctamente — la salida Base64 no se parece en nada a la entrada, pero se decodifica perfectamente en cada ocasión.",
+      "terminal": {
+        "heading": "Pruébelo usted mismo en una terminal",
+        "macos": {
+          "title": "macOS — Terminal",
+          "encode": "Codificar",
+          "decode": "Decodificar"
+        },
+        "linux": {
+          "title": "Linux — Terminal",
+          "note": "Los comandos son idénticos a los de macOS.",
+          "encode": "Codificar",
+          "decode": "Decodificar"
+        },
+        "windows": {
+          "title": "Windows — PowerShell",
+          "note": "Windows no dispone de un comando base64 integrado, pero PowerShell lo gestiona de forma nativa. El paso adicional que especifica UTF-8 garantiza que los caracteres acentuados o no latinos se codifiquen correctamente.",
+          "encode": "Codificar",
+          "decode": "Decodificar"
+        },
+        "flagNote": "En macOS y Linux, el indicador -n en echo es importante — sin él se incluye un salto de línea final en la codificación y el resultado será incorrecto."
+      }
+    },
+    "workedExample": {
+      "heading": "Un ejemplo práctico",
+      "p": "Construyamos el URI paso a paso para esta transmisión:",
+      "tableLabels": {
+        "broadcastName": "Nombre de la transmisión",
+        "broadcastId": "ID de transmisión",
+        "addressType": "Tipo de dirección",
+        "advertiserAddress": "Dirección del anunciante",
+        "quality": "Calidad",
+        "encrypted": "Cifrada"
+      },
+      "tableValues": {
+        "broadcastName": "\"Airport\"",
+        "broadcastId": "1A2B3C",
+        "addressType": "Pública (0)",
+        "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "quality": "Solo Alta Calidad",
+        "encrypted": "No"
+      },
+      "steps": [
+        {
+          "label": "Comenzar con el identificador de servicio Auracast",
+          "note": "Este prefijo es fijo — nunca cambia."
+        },
+        {
+          "label": "Añadir el nombre de la transmisión",
+          "note": "\"Airport\" → codificado en Base64 → QWlycG9ydA=="
+        },
+        {
+          "label": "Añadir el tipo de dirección",
+          "note": "0 = dirección pública"
+        },
+        {
+          "label": "Añadir la dirección del anunciante",
+          "note": "Dos puntos eliminados, en mayúsculas — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
+        },
+        {
+          "label": "Añadir el ID de transmisión",
+          "note": "El identificador hexadecimal único para esta transmisión"
+        },
+        {
+          "label": "Añadir el indicador de calidad",
+          "note": "Se añade HQ:1 porque se ha seleccionado Alta Calidad. Se omite SQ:1."
+        },
+        {
+          "label": "Cerrar con un doble punto y coma",
+          "note": "El ;; final indica el fin del URI Auracast."
+        }
+      ]
+    },
+    "completeUri": {
+      "heading": "El URI completo",
+      "p": "Esta es la cadena final que se incrusta en el código QR. Cualquier dispositivo Bluetooth compatible puede escanearlo y conectarse directamente a la transmisión.",
+      "note": "El código QR se genera a partir de esta cadena con el nivel más alto de corrección de errores disponible, de modo que el código sigue siendo escaneable aunque parte de él esté oculto o dañado."
+    },
+    "cta": {
+      "heading": "Pruébelo usted mismo",
+      "subtext": "Introduzca los datos de su transmisión y observe cómo se actualiza el URI en tiempo real.",
+      "button": "Abrir el generador"
+    },
+    "learnMore": {
+      "text": "¿Es nuevo en Auracast?",
+      "link": "Lea nuestra introducción →"
+    }
+  }
+}

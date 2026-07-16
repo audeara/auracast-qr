@@ -50,6 +50,11 @@ describe('encodeUri — BI (Broadcast ID)', () => {
     const uri = encodeUri({ ...base, BI: 'FF00' });
     expect(uri).toContain('BI:FF00');
   });
+
+  it('omits BI when BI is empty', () => {
+    const uri = encodeUri({ ...base, BI: '' });
+    expect(uri).not.toContain('BI:');
+  });
 });
 
 describe('encodeUri — AD / AT (Device Address)', () => {
