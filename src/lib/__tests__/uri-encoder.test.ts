@@ -7,6 +7,8 @@ const base: FormValues = {
   BI: '1A2B',
   AD: '',
   AT: '0',
+  AS: '',
+  PI: '',
   quality: 'none',
   encrypted: false,
 };
@@ -79,6 +81,45 @@ describe('encodeUri — AD / AT (Device Address)', () => {
   it('uppercases the device address', () => {
     const uri = encodeUri({ ...base, AT: '0', AD: 'aabbccddeeff' });
     expect(uri).toContain('AD:AABBCCDDEEFF');
+  });
+});
+
+describe('encodeUri — AS (Advertising SID)', () => {
+  it('omits AS when empty', () => {
+    const uri = encodeUri({ ...base, AS: '' });
+    expect(uri).not.toContain('AS:');
+  });
+
+  it('includes AS when provided', () => {
+    const uri = encodeUri({ ...base, AS: '8' });
+    expect(uri).toContain('AS:8');
+  });
+
+  it('includes AS:0 when SID is zero', () => {
+    const uri = encodeUri({ ...base, AS: '0' });
+    expect(uri).toContain('AS:0');
+  });
+
+  it('places AS before BI', () => {
+    const uri = encodeUri({ ...base, AS: '8', BI: '1A2B3C' });
+    expect(uri.indexOf('AS:')).toBeLessThan(uri.indexOf('BI:'));
+  });
+});
+
+describe('encodeUri — PI (PA Interval)', () => {
+  it('omits PI when empty', () => {
+    const uri = encodeUri({ ...base, PI: '' });
+    expect(uri).not.toContain('PI:');
+  });
+
+  it('uppercases and includes PI when provided', () => {
+    const uri = encodeUri({ ...base, PI: 'ffff' });
+    expect(uri).toContain('PI:FFFF');
+  });
+
+  it('places PI after BI', () => {
+    const uri = encodeUri({ ...base, PI: 'FFFF', BI: '1A2B3C' });
+    expect(uri.indexOf('BI:')).toBeLessThan(uri.indexOf('PI:'));
   });
 });
 

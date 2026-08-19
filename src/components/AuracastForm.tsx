@@ -17,6 +17,8 @@ export type FormUrlValues = {
   BI: string;
   AD: string;
   AT: '0' | '1';
+  AS: string;
+  PI: string;
   quality: 'none' | 'sq' | 'hq' | 'both';
   encrypted: boolean;
   BC: string;
@@ -52,6 +54,8 @@ export default function AuracastForm({
       BI: initialValues?.BI ?? '',
       AD: initialValues?.AD ?? '',
       AT: initialValues?.AT ?? '0',
+      AS: initialValues?.AS ?? '',
+      PI: initialValues?.PI ?? '',
       quality: initialValues?.quality ?? 'none',
       encrypted: initialValues?.encrypted ?? false,
       BC: initialValues?.BC ?? '',
@@ -78,6 +82,8 @@ export default function AuracastForm({
         BI: values.BI ?? '',
         AD: values.AD ?? '',
         AT: (values.AT as '0' | '1') ?? '0',
+        AS: values.AS ?? '',
+        PI: values.PI ?? '',
         quality: (values.quality as 'none' | 'sq' | 'hq' | 'both') ?? 'none',
         encrypted: values.encrypted ?? false,
         BC: values.BC ?? '',
@@ -117,6 +123,55 @@ export default function AuracastForm({
           placeholder={dict.broadcastName.placeholder}
           maxLength={32}
           className={inputClass(!!errors.BN)}
+        />
+      </Field>
+
+      <Field
+        label={dict.broadcastId.label}
+        error={errors.BI?.message}
+        required
+        tooltip={dict.broadcastId.tooltip}
+      >
+        <input
+          {...register('BI')}
+          type="text"
+          placeholder={dict.broadcastId.placeholder}
+          maxLength={6}
+          className={inputClass(!!errors.BI)}
+        />
+      </Field>
+
+      <Field
+        label={dict.deviceAddress.label}
+        error={errors.AD?.message}
+        required
+        hint={dict.deviceAddress.hint}
+        tooltip={dict.deviceAddress.tooltip}
+      >
+        <input
+          {...register('AD')}
+          type="text"
+          placeholder={dict.deviceAddress.placeholder}
+          maxLength={17}
+          onChange={handleAdChange}
+          className={inputClass(!!errors.AD)}
+        />
+      </Field>
+
+      <Field
+        label={dict.advertisingSid.label}
+        error={errors.AS?.message}
+        required
+        hint={dict.advertisingSid.hint}
+        tooltip={dict.advertisingSid.tooltip}
+      >
+        <input
+          {...register('AS')}
+          type="text"
+          inputMode="numeric"
+          placeholder={dict.advertisingSid.placeholder}
+          maxLength={2}
+          className={inputClass(!!errors.AS)}
         />
       </Field>
 
@@ -180,36 +235,6 @@ export default function AuracastForm({
             <div className="pt-6 space-y-6">
 
               <Field
-                label={dict.broadcastId.label}
-                error={errors.BI?.message}
-                tooltip={dict.broadcastId.tooltip}
-              >
-                <input
-                  {...register('BI')}
-                  type="text"
-                  placeholder={dict.broadcastId.placeholder}
-                  maxLength={6}
-                  className={inputClass(!!errors.BI)}
-                />
-              </Field>
-
-              <Field
-                label={dict.deviceAddress.label}
-                error={errors.AD?.message}
-                hint={dict.deviceAddress.hint}
-                tooltip={dict.deviceAddress.tooltip}
-              >
-                <input
-                  {...register('AD')}
-                  type="text"
-                  placeholder={dict.deviceAddress.placeholder}
-                  maxLength={17}
-                  onChange={handleAdChange}
-                  className={inputClass(!!errors.AD)}
-                />
-              </Field>
-
-              <Field
                 label={dict.addressType.label}
                 error={errors.AT?.message}
                 tooltip={dict.addressType.tooltip}
@@ -241,6 +266,21 @@ export default function AuracastForm({
                       ))}
                     </div>
                   )}
+                />
+              </Field>
+
+              <Field
+                label={dict.paInterval.label}
+                error={errors.PI?.message}
+                hint={dict.paInterval.hint}
+                tooltip={dict.paInterval.tooltip}
+              >
+                <input
+                  {...register('PI')}
+                  type="text"
+                  placeholder={dict.paInterval.placeholder}
+                  maxLength={4}
+                  className={inputClass(!!errors.PI)}
                 />
               </Field>
 

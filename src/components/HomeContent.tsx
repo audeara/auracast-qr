@@ -28,6 +28,8 @@ const FORM_PARSERS = {
   BI: parseAsString.withDefault(''),
   AD: parseAsString.withDefault(''),
   AT: parseAsStringLiteral(['0', '1'] as const).withDefault('0'),
+  AS: parseAsString.withDefault(''),
+  PI: parseAsString.withDefault(''),
   quality: parseAsStringLiteral(['none', 'sq', 'hq', 'both'] as const).withDefault('none'),
   encrypted: parseAsBoolean.withDefault(false),
   BC: parseAsString.withDefault(''),

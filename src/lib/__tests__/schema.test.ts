@@ -4,8 +4,9 @@ import { formSchema } from '../schema';
 const base = {
   BN: 'Test Name',
   BI: '1A2B3C',
-  AD: '',
+  AD: 'AABBCCDDEEFF',
   AT: '0' as const,
+  AS: '8',
   quality: 'none' as const,
   encrypted: false,
 };
@@ -41,8 +42,8 @@ describe('formSchema — BI (Broadcast ID)', () => {
     expect(formSchema.safeParse({ ...base, BI: '1a2b3c' }).success).toBe(true);
   });
 
-  it('accepts empty string', () => {
-    expect(formSchema.safeParse({ ...base, BI: '' }).success).toBe(true);
+  it('rejects empty string (required)', () => {
+    expect(formSchema.safeParse({ ...base, BI: '' }).success).toBe(false);
   });
 
   it('rejects more than 6 hex characters', () => {
@@ -55,8 +56,8 @@ describe('formSchema — BI (Broadcast ID)', () => {
 });
 
 describe('formSchema — AD (Device Address)', () => {
-  it('accepts empty string', () => {
-    expect(formSchema.safeParse({ ...base, AD: '' }).success).toBe(true);
+  it('rejects empty string (required)', () => {
+    expect(formSchema.safeParse({ ...base, AD: '' }).success).toBe(false);
   });
 
   it('accepts 12 hex characters without colons', () => {
@@ -87,6 +88,43 @@ describe('formSchema — AT (Address Type)', () => {
 
   it('rejects other values', () => {
     expect(formSchema.safeParse({ ...base, AT: '2' }).success).toBe(false);
+  });
+});
+
+describe('formSchema — AS (Advertising SID)', () => {
+  it('rejects empty string (required)', () => {
+    expect(formSchema.safeParse({ ...base, AS: '' }).success).toBe(false);
+  });
+
+  it.each(['0', '8', '15'])('accepts %s', (AS) => {
+    expect(formSchema.safeParse({ ...base, AS }).success).toBe(true);
+  });
+
+  it('rejects 16 (out of range)', () => {
+    expect(formSchema.safeParse({ ...base, AS: '16' }).success).toBe(false);
+  });
+
+  it('rejects non-numeric', () => {
+    expect(formSchema.safeParse({ ...base, AS: 'A' }).success).toBe(false);
+  });
+});
+
+describe('formSchema — PI (PA Interval)', () => {
+  it('accepts empty string', () => {
+    expect(formSchema.safeParse({ ...base, PI: '' }).success).toBe(true);
+  });
+
+  it('accepts 1–4 hex characters', () => {
+    expect(formSchema.safeParse({ ...base, PI: 'FFFF' }).success).toBe(true);
+    expect(formSchema.safeParse({ ...base, PI: 'a' }).success).toBe(true);
+  });
+
+  it('rejects more than 4 hex characters', () => {
+    expect(formSchema.safeParse({ ...base, PI: '10000' }).success).toBe(false);
+  });
+
+  it('rejects non-hex characters', () => {
+    expect(formSchema.safeParse({ ...base, PI: 'GGGG' }).success).toBe(false);
   });
 });
 
