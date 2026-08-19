@@ -157,22 +157,6 @@ export default function AuracastForm({
         />
       </Field>
 
-      <Field
-        label={dict.advertisingSid.label}
-        error={errors.AS?.message}
-        hint={dict.advertisingSid.hint}
-        tooltip={dict.advertisingSid.tooltip}
-      >
-        <input
-          {...register('AS')}
-          type="text"
-          inputMode="numeric"
-          placeholder={dict.advertisingSid.placeholder}
-          maxLength={2}
-          className={inputClass(!!errors.AS)}
-        />
-      </Field>
-
       <div className="flex items-center gap-3">
         <label htmlFor="encrypted" className="text-base font-medium text-body-text cursor-pointer">
           {dict.encrypted.label}
@@ -264,6 +248,22 @@ export default function AuracastForm({
                       ))}
                     </div>
                   )}
+                />
+              </Field>
+
+              <Field
+                label={dict.advertisingSid.label}
+                error={errors.AS?.message}
+                hint={dict.advertisingSid.hint}
+                tooltip={dict.advertisingSid.tooltip}
+              >
+                <input
+                  {...register('AS')}
+                  type="text"
+                  inputMode="numeric"
+                  placeholder={dict.advertisingSid.placeholder}
+                  maxLength={2}
+                  className={inputClass(!!errors.AS)}
                 />
               </Field>
 
