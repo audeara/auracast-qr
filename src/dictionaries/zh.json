@@ -52,7 +52,19 @@
       "placeholder": "输入广播访问码",
       "tooltip": "收听者访问加密广播所需的密码。此访问码在广播设备上配置——您的 AV 技术人员可以提供。最长为 16 个字符。"
     },
-    "advanced": "高级设置"
+    "advanced": "高级设置",
+    "advertisingSid": {
+      "label": "广播 SID",
+      "hint": "可选 — 0 到 15",
+      "placeholder": "例如：8",
+      "tooltip": "广播周期性广播的广播集标识符 (SID)。某些接收器（尤其是某些助听器）需要它才能锁定音频流。您的 AV 技术人员可在广播设备的设置中找到它。它是 0 到 15 之间的单个数字。"
+    },
+    "paInterval": {
+      "label": "周期性广播间隔",
+      "hint": "可选 — 1 到 4 个十六进制字符",
+      "placeholder": "例如：FFFF",
+      "tooltip": "广播商发送周期性广播的频率，以十六进制表示。某些接收器用它来更快地同步。您的 AV 技术人员可在广播设备的设置中找到它。如果不确定，请留空。"
+    }
   },
   "preview": {
     "title": "QR 预览",
@@ -234,11 +246,25 @@
           "optional": true
         },
         {
+          "field": "AS:<0–15>",
+          "value": "8",
+          "label": "广播 SID",
+          "description": "广播商周期性广播的广播集标识符——0 到 15 之间的单个数字。某些接收器（尤其是某些助听器）需要它才能与音频流建立同步。仅在提供时包含。",
+          "optional": true
+        },
+        {
           "field": "BI:<hex>",
           "value": "1A2B3C",
           "label": "广播 ID",
           "description": "广播流的唯一标识符，以十六进制表示（1 至 6 个字符）。由广播商指定，用于将其与同区域内其他 Auracast 流区分开来。",
           "optional": false
+        },
+        {
+          "field": "PI:<hex>",
+          "value": "FFFF",
+          "label": "周期性广播间隔",
+          "description": "广播商周期性广播的间隔，以十六进制表示（1 至 4 个字符）。它使接收器能够预测下一个广播数据包并更高效地同步。仅在提供时包含。",
+          "optional": true
         },
         {
           "field": "SQ:1",
@@ -297,6 +323,8 @@
         "broadcastId": "广播 ID",
         "addressType": "地址类型",
         "advertiserAddress": "广播商地址",
+        "advertisingSid": "广播 SID",
+        "paInterval": "PA 间隔",
         "quality": "质量",
         "encrypted": "加密"
       },
@@ -305,6 +333,8 @@
         "broadcastId": "1A2B3C",
         "addressType": "公共（0）",
         "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "advertisingSid": "8",
+        "paInterval": "FFFF",
         "quality": "仅高质量",
         "encrypted": "否"
       },
@@ -326,8 +356,16 @@
           "note": "去除冒号，转为大写——A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
         },
         {
+          "label": "附加广播 SID",
+          "note": "AS:8 —— 某些接收器需要它来建立同步"
+        },
+        {
           "label": "附加广播 ID",
           "note": "该流的唯一十六进制标识符"
+        },
+        {
+          "label": "附加周期性广播间隔",
+          "note": "PI:FFFF —— 周期性广播间隔，以十六进制表示"
         },
         {
           "label": "附加质量标志",

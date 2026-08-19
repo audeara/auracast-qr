@@ -52,7 +52,19 @@
       "placeholder": "Voer uitzendcode in",
       "tooltip": "Het wachtwoord dat luisteraars nodig hebben om toegang te krijgen tot uw versleutelde uitzending. Deze code wordt geconfigureerd op uw uitzendapparatuur — uw AV-technicus kan deze verstrekken. De code mag maximaal 16 tekens lang zijn."
     },
-    "advanced": "Geavanceerd"
+    "advanced": "Geavanceerd",
+    "advertisingSid": {
+      "label": "Advertentie-SID",
+      "hint": "Optioneel — 0 tot 15",
+      "placeholder": "bijv. 8",
+      "tooltip": "De Advertising Set Identifier (SID) van de periodieke advertentie van de uitzending. Sommige ontvangers — met name bepaalde hoortoestellen — hebben deze nodig om op de stream te vergrendelen. Uw AV-technicus vindt deze in de instellingen van de uitzendapparatuur. Het is één cijfer van 0 tot 15."
+    },
+    "paInterval": {
+      "label": "Interval periodieke advertentie",
+      "hint": "Optioneel — 1 tot 4 hexadecimale tekens",
+      "placeholder": "bijv. FFFF",
+      "tooltip": "Hoe vaak de uitzender zijn periodieke advertentie verzendt, in hexadecimaal. Sommige ontvangers gebruiken dit om sneller te synchroniseren. Uw AV-technicus vindt dit in de instellingen van de uitzendapparatuur. Laat leeg als u het niet zeker weet."
+    }
   },
   "preview": {
     "title": "QR-voorbeeld",
@@ -234,11 +246,25 @@
           "optional": true
         },
         {
+          "field": "AS:<0–15>",
+          "value": "8",
+          "label": "Advertentie-SID",
+          "description": "De Advertising Set Identifier van de periodieke advertentie van de uitzender — één cijfer van 0 tot 15. Sommige ontvangers, met name bepaalde hoortoestellen, hebben deze nodig om synchronisatie met de stream tot stand te brengen. Alleen opgenomen indien opgegeven.",
+          "optional": true
+        },
+        {
           "field": "BI:<hex>",
           "value": "1A2B3C",
           "label": "Uitzend-ID",
           "description": "Een unieke identificatie voor de uitzendstream, geschreven in hexadecimaal (1 tot 6 tekens). Dit wordt toegewezen door de uitzender en onderscheidt deze van andere Auracast-streams in hetzelfde gebied.",
           "optional": false
+        },
+        {
+          "field": "PI:<hex>",
+          "value": "FFFF",
+          "label": "Interval periodieke advertentie",
+          "description": "Het interval van de periodieke advertentie van de uitzender, geschreven in hexadecimaal (1 tot 4 tekens). Hiermee kan een ontvanger het volgende advertentiepakket anticiperen en efficiënter synchroniseren. Alleen opgenomen indien opgegeven.",
+          "optional": true
         },
         {
           "field": "SQ:1",
@@ -297,6 +323,8 @@
         "broadcastId": "Uitzend-ID",
         "addressType": "Adrestype",
         "advertiserAddress": "Adverteerderadres",
+        "advertisingSid": "Advertentie-SID",
+        "paInterval": "PA-interval",
         "quality": "Kwaliteit",
         "encrypted": "Versleuteld"
       },
@@ -305,6 +333,8 @@
         "broadcastId": "1A2B3C",
         "addressType": "Openbaar (0)",
         "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "advertisingSid": "8",
+        "paInterval": "FFFF",
         "quality": "Alleen hogekwaliteit",
         "encrypted": "Nee"
       },
@@ -326,8 +356,16 @@
           "note": "Dubbele punten verwijderd, hoofdletters — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
         },
         {
+          "label": "Voeg de advertentie-SID toe",
+          "note": "AS:8 — vereist door sommige ontvangers om te synchroniseren"
+        },
+        {
           "label": "Voeg het uitzend-ID toe",
           "note": "De unieke hexadecimale identificatie voor deze stream"
+        },
+        {
+          "label": "Voeg het interval van de periodieke advertentie toe",
+          "note": "PI:FFFF — het interval van de periodieke advertentie, in hexadecimaal"
         },
         {
           "label": "Voeg de kwaliteitsvlag toe",

@@ -52,7 +52,19 @@
       "placeholder": "Enter broadcast code",
       "tooltip": "The password listeners need to access your encrypted broadcast. This code is configured on your broadcast equipment — your AV technician will be able to provide it. It can be up to 16 characters long."
     },
-    "advanced": "Advanced"
+    "advanced": "Advanced",
+    "advertisingSid": {
+      "label": "Advertising SID",
+      "hint": "Optional — 0 to 15",
+      "placeholder": "e.g. 8",
+      "tooltip": "The Advertising Set Identifier of the broadcast's periodic advertising. Some receivers — notably certain hearing aids — need it to lock onto the stream. Your AV technician will find it in the broadcast equipment's settings. It's a single number from 0 to 15."
+    },
+    "paInterval": {
+      "label": "Periodic Advertising Interval",
+      "hint": "Optional — 1 to 4 hex characters",
+      "placeholder": "e.g. FFFF",
+      "tooltip": "How often the broadcaster sends its periodic advertising, in hexadecimal. Some receivers use it to sync faster. Your AV technician will find it in the broadcast equipment's settings. Leave blank if you're unsure."
+    }
   },
   "preview": {
     "title": "QR Preview",
@@ -234,12 +246,26 @@
           "optional": true
         },
         {
+          "field": "AS:<0–15>",
+          "value": "8",
+          "label": "Advertising SID",
+          "description": "The Advertising Set Identifier of the broadcaster's periodic advertising — a single number from 0 to 15. Some receivers, notably certain hearing aids, require it to establish sync with the stream. Only included when provided.",
+          "optional": true
+        },
+        {
           "field": "BI:<hex>",
           "value": "1A2B3C",
           "label": "Broadcast ID",
           "description": "A unique identifier for the broadcast stream, written in hexadecimal (1 to 6 characters). This is assigned by the broadcaster and distinguishes it from other Auracast streams in the same area.",
           "optional": true,
           "note": "Note: while the Broadcast ID is technically required by the Auracast specification, many real-world implementations omit it without issue. Most transmitters run only a single broadcast at a time, so receiver devices can identify the stream without an explicit ID — and popular platforms such as Google Pixel handle its absence gracefully. In practice, you'll frequently encounter working Auracast deployments where this field is not present."
+        },
+        {
+          "field": "PI:<hex>",
+          "value": "FFFF",
+          "label": "Periodic Advertising Interval",
+          "description": "The interval of the broadcaster's periodic advertising, written in hexadecimal (1 to 4 characters). It lets a receiver anticipate the next advertising packet and sync more efficiently. Only included when provided.",
+          "optional": true
         },
         {
           "field": "SQ:1",
@@ -298,6 +324,8 @@
         "broadcastId": "Broadcast ID",
         "addressType": "Address Type",
         "advertiserAddress": "Advertiser Address",
+        "advertisingSid": "Advertising SID",
+        "paInterval": "PA Interval",
         "quality": "Quality",
         "encrypted": "Encrypted"
       },
@@ -306,6 +334,8 @@
         "broadcastId": "1A2B3C",
         "addressType": "Public (0)",
         "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "advertisingSid": "8",
+        "paInterval": "FFFF",
         "quality": "High Quality only",
         "encrypted": "No"
       },
@@ -327,8 +357,16 @@
           "note": "Colons removed, uppercase — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
         },
         {
+          "label": "Append the Advertising SID",
+          "note": "AS:8 — required by some receivers to establish sync"
+        },
+        {
           "label": "Append the Broadcast ID",
           "note": "The unique hex identifier for this stream"
+        },
+        {
+          "label": "Append the Periodic Advertising Interval",
+          "note": "PI:FFFF — the periodic advertising interval, in hex"
         },
         {
           "label": "Append the quality flag",

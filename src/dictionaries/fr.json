@@ -52,7 +52,19 @@
       "placeholder": "Saisissez le code de diffusion",
       "tooltip": "Le mot de passe dont les auditeurs ont besoin pour accéder à votre diffusion chiffrée. Ce code est configuré sur votre équipement de diffusion — votre technicien AV pourra vous le fournir. Il peut comporter jusqu'à 16 caractères."
     },
-    "advanced": "Avancé"
+    "advanced": "Avancé",
+    "advertisingSid": {
+      "label": "SID d'annonce",
+      "hint": "Facultatif — de 0 à 15",
+      "placeholder": "p. ex. 8",
+      "tooltip": "L'identifiant de l'ensemble d'annonces (SID) de l'annonce périodique de la diffusion. Certains récepteurs — notamment certaines aides auditives — en ont besoin pour se synchroniser au flux. Votre technicien AV le trouvera dans les paramètres de l'équipement de diffusion. C'est un seul chiffre de 0 à 15."
+    },
+    "paInterval": {
+      "label": "Intervalle d'annonce périodique",
+      "hint": "Facultatif — 1 à 4 caractères hexadécimaux",
+      "placeholder": "p. ex. FFFF",
+      "tooltip": "La fréquence, en hexadécimal, à laquelle l'émetteur envoie son annonce périodique. Certains récepteurs l'utilisent pour se synchroniser plus rapidement. Votre technicien AV le trouvera dans les paramètres de l'équipement de diffusion. Laissez vide si vous n'êtes pas sûr."
+    }
   },
   "preview": {
     "title": "Aperçu du QR",
@@ -234,11 +246,25 @@
           "optional": true
         },
         {
+          "field": "AS:<0–15>",
+          "value": "8",
+          "label": "SID d'annonce",
+          "description": "L'identifiant de l'ensemble d'annonces de l'annonce périodique de l'émetteur — un seul chiffre de 0 à 15. Certains récepteurs, notamment certaines aides auditives, en ont besoin pour établir la synchronisation avec le flux. Inclus uniquement lorsqu'il est fourni.",
+          "optional": true
+        },
+        {
           "field": "BI:<hex>",
           "value": "1A2B3C",
           "label": "Broadcast ID",
           "description": "Un identifiant unique pour le flux de diffusion, écrit en hexadécimal (1 à 6 caractères). Il est attribué par l'émetteur et le distingue des autres flux Auracast présents dans la même zone.",
           "optional": false
+        },
+        {
+          "field": "PI:<hex>",
+          "value": "FFFF",
+          "label": "Intervalle d'annonce périodique",
+          "description": "L'intervalle de l'annonce périodique de l'émetteur, écrit en hexadécimal (1 à 4 caractères). Il permet à un récepteur d'anticiper le prochain paquet d'annonce et de se synchroniser plus efficacement. Inclus uniquement lorsqu'il est fourni.",
+          "optional": true
         },
         {
           "field": "SQ:1",
@@ -297,6 +323,8 @@
         "broadcastId": "Broadcast ID",
         "addressType": "Type d'adresse",
         "advertiserAddress": "Adresse de l'annonceur",
+        "advertisingSid": "SID d'annonce",
+        "paInterval": "Intervalle PA",
         "quality": "Qualité",
         "encrypted": "Chiffrement"
       },
@@ -305,6 +333,8 @@
         "broadcastId": "1A2B3C",
         "addressType": "Publique (0)",
         "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "advertisingSid": "8",
+        "paInterval": "FFFF",
         "quality": "Haute qualité uniquement",
         "encrypted": "Non"
       },
@@ -326,8 +356,16 @@
           "note": "Deux-points supprimés, majuscules — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
         },
         {
+          "label": "Ajouter le SID d'annonce",
+          "note": "AS:8 — requis par certains récepteurs pour établir la synchronisation"
+        },
+        {
           "label": "Ajouter le Broadcast ID",
           "note": "L'identifiant hexadécimal unique pour ce flux"
+        },
+        {
+          "label": "Ajouter l'intervalle d'annonce périodique",
+          "note": "PI:FFFF — l'intervalle d'annonce périodique, en hexadécimal"
         },
         {
           "label": "Ajouter le drapeau de qualité",

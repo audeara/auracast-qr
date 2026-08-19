@@ -52,7 +52,19 @@
       "placeholder": "Introduzca el código de transmisión",
       "tooltip": "La contraseña que necesitan los oyentes para acceder a su transmisión cifrada. Este código se configura en el equipo de transmisión — su técnico AV podrá proporcionárselo. Puede tener hasta 16 caracteres."
     },
-    "advanced": "Avanzado"
+    "advanced": "Avanzado",
+    "advertisingSid": {
+      "label": "SID de anuncio",
+      "hint": "Opcional — de 0 a 15",
+      "placeholder": "p. ej. 8",
+      "tooltip": "El identificador del conjunto de anuncios (SID) del anuncio periódico de la transmisión. Algunos receptores — en particular ciertos audífonos — lo necesitan para engancharse a la transmisión. Su técnico AV lo encontrará en la configuración del equipo de transmisión. Es un único número de 0 a 15."
+    },
+    "paInterval": {
+      "label": "Intervalo de anuncio periódico",
+      "hint": "Opcional — de 1 a 4 caracteres hexadecimales",
+      "placeholder": "p. ej. FFFF",
+      "tooltip": "Con qué frecuencia, en hexadecimal, el emisor envía su anuncio periódico. Algunos receptores lo usan para sincronizarse más rápido. Su técnico AV lo encontrará en la configuración del equipo de transmisión. Déjelo en blanco si no está seguro."
+    }
   },
   "preview": {
     "title": "Vista previa del QR",
@@ -234,11 +246,25 @@
           "optional": true
         },
         {
+          "field": "AS:<0–15>",
+          "value": "8",
+          "label": "SID de anuncio",
+          "description": "El identificador del conjunto de anuncios del anuncio periódico del emisor — un único número de 0 a 15. Algunos receptores, en particular ciertos audífonos, lo necesitan para establecer la sincronización con la transmisión. Solo se incluye cuando se proporciona.",
+          "optional": true
+        },
+        {
           "field": "BI:<hex>",
           "value": "1A2B3C",
           "label": "ID de transmisión",
           "description": "Un identificador único para la transmisión, escrito en hexadecimal (de 1 a 6 caracteres). Es asignado por el emisor y la distingue de otras transmisiones Auracast en la misma área.",
           "optional": false
+        },
+        {
+          "field": "PI:<hex>",
+          "value": "FFFF",
+          "label": "Intervalo de anuncio periódico",
+          "description": "El intervalo del anuncio periódico del emisor, escrito en hexadecimal (de 1 a 4 caracteres). Permite que un receptor anticipe el siguiente paquete de anuncio y se sincronice de forma más eficiente. Solo se incluye cuando se proporciona.",
+          "optional": true
         },
         {
           "field": "SQ:1",
@@ -297,6 +323,8 @@
         "broadcastId": "ID de transmisión",
         "addressType": "Tipo de dirección",
         "advertiserAddress": "Dirección del anunciante",
+        "advertisingSid": "SID de anuncio",
+        "paInterval": "Intervalo PA",
         "quality": "Calidad",
         "encrypted": "Cifrada"
       },
@@ -305,6 +333,8 @@
         "broadcastId": "1A2B3C",
         "addressType": "Pública (0)",
         "advertiserAddress": "A1:B2:C3:D4:E5:F6",
+        "advertisingSid": "8",
+        "paInterval": "FFFF",
         "quality": "Solo Alta Calidad",
         "encrypted": "No"
       },
@@ -326,8 +356,16 @@
           "note": "Dos puntos eliminados, en mayúsculas — A1:B2:C3:D4:E5:F6 → A1B2C3D4E5F6"
         },
         {
+          "label": "Añadir el SID de anuncio",
+          "note": "AS:8 — requerido por algunos receptores para establecer la sincronización"
+        },
+        {
           "label": "Añadir el ID de transmisión",
           "note": "El identificador hexadecimal único para esta transmisión"
+        },
+        {
+          "label": "Añadir el intervalo de anuncio periódico",
+          "note": "PI:FFFF — el intervalo de anuncio periódico, en hexadecimal"
         },
         {
           "label": "Añadir el indicador de calidad",
