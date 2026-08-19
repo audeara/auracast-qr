@@ -20,11 +20,12 @@
     "broadcastId": {
       "label": "Broadcast ID",
       "placeholder": "e.g. 1A2B",
-      "tooltip": "A short code that uniquely identifies this broadcast. Your AV technician will find it in the broadcast equipment's settings. It uses only numbers and the letters A–F (for example: 1A2B or FF003C). It can be 1–6 characters long."
+      "tooltip": "A short code that uniquely identifies this broadcast. Your AV technician will find it in the broadcast equipment's settings. It uses only numbers and the letters A–F (for example: 1A2B or FF003C). It can be 1–6 characters long.",
+      "hint": "Recommended for better compatibility with some devices"
     },
     "deviceAddress": {
       "label": "Device Address",
-      "hint": "Optional — 12 hex characters",
+      "hint": "Recommended for better compatibility with some devices",
       "placeholder": "AA:BB:CC:00:11:22",
       "tooltip": "The Bluetooth hardware address of your broadcast transmitter — similar to a serial number for the device. Your AV technician can find it in the device's settings menu or on a sticker on the equipment itself. It looks like AA:BB:CC:00:11:22. You can leave this blank if you're unsure."
     },

@@ -20,11 +20,12 @@
     "broadcastId": {
       "label": "ID de transmisión",
       "placeholder": "p. ej. 1A2B",
-      "tooltip": "Un código corto que identifica de forma única esta transmisión. Su técnico AV lo encontrará en la configuración del equipo de transmisión. Solo utiliza números y las letras A–F (por ejemplo: 1A2B o FF003C). Puede tener entre 1 y 6 caracteres."
+      "tooltip": "Un código corto que identifica de forma única esta transmisión. Su técnico AV lo encontrará en la configuración del equipo de transmisión. Solo utiliza números y las letras A–F (por ejemplo: 1A2B o FF003C). Puede tener entre 1 y 6 caracteres.",
+      "hint": "Recomendado para una mejor compatibilidad con algunos dispositivos"
     },
     "deviceAddress": {
       "label": "Dirección del dispositivo",
-      "hint": "Opcional — 12 caracteres hexadecimales",
+      "hint": "Recomendado para una mejor compatibilidad con algunos dispositivos",
       "placeholder": "AA:BB:CC:00:11:22",
       "tooltip": "La dirección de hardware Bluetooth del transmisor de su transmisión — similar al número de serie del dispositivo. Su técnico AV puede encontrarla en el menú de configuración del dispositivo o en una etiqueta del equipo. Tiene el formato AA:BB:CC:00:11:22. Puede dejarlo en blanco si no está seguro."
     },

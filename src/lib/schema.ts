@@ -5,26 +5,26 @@ export const formSchema = z
     BN: z.string().min(4, 'Minimum 4 characters').max(32, 'Maximum 32 characters'),
     BI: z
       .string()
-      .min(1, 'Required')
       .refine(
-        (val) => /^[0-9A-Fa-f]{1,6}$/.test(val),
+        (val) => !val || /^[0-9A-Fa-f]{1,6}$/.test(val),
         { message: 'Must be 1–6 hex characters' }
-      ),
+      )
+      .default(''),
     AD: z
       .string()
-      .min(1, 'Required')
       .refine(
-        (val) => /^[0-9A-Fa-f]{12}$/.test(val.replace(/:/g, '')),
+        (val) => !val || /^[0-9A-Fa-f]{12}$/.test(val.replace(/:/g, '')),
         { message: 'Must be 12 hex characters (colons allowed)' }
-      ),
+      )
+      .default(''),
     AT: z.enum(['0', '1']),
     AS: z
       .string()
-      .min(1, 'Required')
       .refine(
-        (val) => /^([0-9]|1[0-5])$/.test(val),
+        (val) => !val || /^([0-9]|1[0-5])$/.test(val),
         { message: 'Must be 0–15' }
-      ),
+      )
+      .default(''),
     PI: z
       .string()
       .refine(

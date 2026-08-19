@@ -20,11 +20,12 @@
     "broadcastId": {
       "label": "Broadcast ID",
       "placeholder": "p. ex. 1A2B",
-      "tooltip": "Un code court qui identifie cette diffusion de manière unique. Votre technicien AV le trouvera dans les paramètres de l'équipement de diffusion. Il utilise uniquement des chiffres et les lettres A–F (par exemple : 1A2B ou FF003C). Il peut comporter entre 1 et 6 caractères."
+      "tooltip": "Un code court qui identifie cette diffusion de manière unique. Votre technicien AV le trouvera dans les paramètres de l'équipement de diffusion. Il utilise uniquement des chiffres et les lettres A–F (par exemple : 1A2B ou FF003C). Il peut comporter entre 1 et 6 caractères.",
+      "hint": "Recommandé pour une meilleure compatibilité avec certains appareils"
     },
     "deviceAddress": {
       "label": "Adresse de l'appareil",
-      "hint": "Facultatif — 12 caractères hexadécimaux",
+      "hint": "Recommandé pour une meilleure compatibilité avec certains appareils",
       "placeholder": "AA:BB:CC:00:11:22",
       "tooltip": "L'adresse matérielle Bluetooth de votre émetteur de diffusion — similaire à un numéro de série pour l'appareil. Votre technicien AV peut la trouver dans le menu des paramètres de l'appareil ou sur une étiquette collée sur l'équipement. Elle ressemble à AA:BB:CC:00:11:22. Vous pouvez laisser ce champ vide si vous n'êtes pas sûr."
     },

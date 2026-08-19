@@ -20,11 +20,12 @@
     "broadcastId": {
       "label": "Uitzend-ID",
       "placeholder": "bijv. 1A2B",
-      "tooltip": "Een korte code die deze uitzending uniek identificeert. Uw AV-technicus vindt deze in de instellingen van de uitzendapparatuur. Er worden alleen cijfers en de letters A–F gebruikt (bijvoorbeeld: 1A2B of FF003C). De code kan 1 tot 6 tekens lang zijn."
+      "tooltip": "Een korte code die deze uitzending uniek identificeert. Uw AV-technicus vindt deze in de instellingen van de uitzendapparatuur. Er worden alleen cijfers en de letters A–F gebruikt (bijvoorbeeld: 1A2B of FF003C). De code kan 1 tot 6 tekens lang zijn.",
+      "hint": "Aanbevolen voor betere compatibiliteit met sommige apparaten"
     },
     "deviceAddress": {
       "label": "Apparaatadres",
-      "hint": "Optioneel — 12 hexadecimale tekens",
+      "hint": "Aanbevolen voor betere compatibiliteit met sommige apparaten",
       "placeholder": "AA:BB:CC:00:11:22",
       "tooltip": "Het Bluetooth-hardwareadres van uw uitzendtransmitter — vergelijkbaar met een serienummer van het apparaat. Uw AV-technicus kan dit vinden in het instellingenmenu van het apparaat of op een sticker op de apparatuur zelf. Het ziet eruit als AA:BB:CC:00:11:22. U kunt dit leeg laten als u het niet zeker weet."
     },

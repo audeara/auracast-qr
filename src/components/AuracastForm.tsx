@@ -129,7 +129,7 @@ export default function AuracastForm({
       <Field
         label={dict.broadcastId.label}
         error={errors.BI?.message}
-        required
+        hint={dict.broadcastId.hint}
         tooltip={dict.broadcastId.tooltip}
       >
         <input
@@ -144,7 +144,6 @@ export default function AuracastForm({
       <Field
         label={dict.deviceAddress.label}
         error={errors.AD?.message}
-        required
         hint={dict.deviceAddress.hint}
         tooltip={dict.deviceAddress.tooltip}
       >
@@ -161,7 +160,6 @@ export default function AuracastForm({
       <Field
         label={dict.advertisingSid.label}
         error={errors.AS?.message}
-        required
         hint={dict.advertisingSid.hint}
         tooltip={dict.advertisingSid.tooltip}
       >

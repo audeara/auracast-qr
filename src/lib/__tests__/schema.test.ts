@@ -42,8 +42,8 @@ describe('formSchema — BI (Broadcast ID)', () => {
     expect(formSchema.safeParse({ ...base, BI: '1a2b3c' }).success).toBe(true);
   });
 
-  it('rejects empty string (required)', () => {
-    expect(formSchema.safeParse({ ...base, BI: '' }).success).toBe(false);
+  it('accepts empty string', () => {
+    expect(formSchema.safeParse({ ...base, BI: '' }).success).toBe(true);
   });
 
   it('rejects more than 6 hex characters', () => {
@@ -56,8 +56,8 @@ describe('formSchema — BI (Broadcast ID)', () => {
 });
 
 describe('formSchema — AD (Device Address)', () => {
-  it('rejects empty string (required)', () => {
-    expect(formSchema.safeParse({ ...base, AD: '' }).success).toBe(false);
+  it('accepts empty string', () => {
+    expect(formSchema.safeParse({ ...base, AD: '' }).success).toBe(true);
   });
 
   it('accepts 12 hex characters without colons', () => {
@@ -92,8 +92,8 @@ describe('formSchema — AT (Address Type)', () => {
 });
 
 describe('formSchema — AS (Advertising SID)', () => {
-  it('rejects empty string (required)', () => {
-    expect(formSchema.safeParse({ ...base, AS: '' }).success).toBe(false);
+  it('accepts empty string', () => {
+    expect(formSchema.safeParse({ ...base, AS: '' }).success).toBe(true);
   });
 
   it.each(['0', '8', '15'])('accepts %s', (AS) => {
