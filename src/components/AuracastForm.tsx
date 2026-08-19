@@ -130,6 +130,7 @@ export default function AuracastForm({
         label={dict.broadcastId.label}
         error={errors.BI?.message}
         hint={dict.broadcastId.hint}
+        hintWarn
         tooltip={dict.broadcastId.tooltip}
       >
         <input
@@ -145,6 +146,7 @@ export default function AuracastForm({
         label={dict.deviceAddress.label}
         error={errors.AD?.message}
         hint={dict.deviceAddress.hint}
+        hintWarn
         tooltip={dict.deviceAddress.tooltip}
       >
         <input
@@ -340,12 +342,13 @@ interface FieldProps {
   label: string;
   error?: string;
   hint?: string;
+  hintWarn?: boolean;
   required?: boolean;
   tooltip?: string;
   children: React.ReactNode;
 }
 
-function Field({ label, error, hint, required, tooltip, children }: FieldProps) {
+function Field({ label, error, hint, hintWarn, required, tooltip, children }: FieldProps) {
   return (
     <div className="space-y-1.5">
       <span className="flex items-center gap-1">
@@ -356,13 +359,44 @@ function Field({ label, error, hint, required, tooltip, children }: FieldProps) 
         {tooltip && <Tooltip text={tooltip} />}
       </span>
       {children}
-      {hint && !error && <p className="text-xs text-body-text/50">{hint}</p>}
+      {hint && !error && (
+        hintWarn ? (
+          <p className="flex items-start gap-1 text-xs font-medium text-amber-600">
+            <WarningIcon />
+            <span>{hint}</span>
+          </p>
+        ) : (
+          <p className="text-xs text-body-text/50">{hint}</p>
+        )
+      )}
       {error && (
         <p className="text-xs text-error" role="alert">
           {error}
         </p>
       )}
     </div>
+  );
+}
+
+function WarningIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="shrink-0 mt-px"
+    >
+      <path
+        d="M12 3.5L2.5 20h19L12 3.5z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path d="M12 10v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="12" cy="16.75" r="1.1" fill="currentColor" />
+    </svg>
   );
 }
 
